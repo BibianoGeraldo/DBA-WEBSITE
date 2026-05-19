@@ -701,7 +701,8 @@ button:active:not(:disabled) { transform: translateY(0) scale(.98); }
 }
 .team-card:hover { box-shadow: 0 20px 36px -14px rgba(0,40,60,.32); }
 .team-card__inner { position: relative; width: 100%; height: 100%; transform-style: preserve-3d; transition: transform .56s cubic-bezier(0.4, 0, 0.2, 1); }
-.team-card:hover .team-card__inner { transform: rotateY(180deg); }
+.team-card:hover .team-card__inner,
+.team-card.is-flipped .team-card__inner { transform: rotateY(180deg); }
 .team-card__face { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; clip-path: inset(0 round 14px); border-radius: 14px; }
 .team-card__front { background: #c8cdd2; }
 .team-card__back { background: var(--c-blue); color: #fff; transform: rotateY(180deg); display: flex; flex-direction: column; padding: 22px 20px 20px; }

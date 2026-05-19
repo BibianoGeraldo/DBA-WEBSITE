@@ -5,8 +5,9 @@ import { ChevronLeft, ChevronRight } from '@/components/ui/Arrow';
 import { TEAM, SOCIAL_LINKS } from '@/lib/data';
 
 function TeamCard({ person }: { person: typeof TEAM[0] }) {
+  const [flipped, setFlipped] = useState(false);
   return (
-    <div data-team-card className="team-card">
+    <div data-team-card className={`team-card${flipped ? ' is-flipped' : ''}`} onClick={() => setFlipped(f => !f)}>
       <div className="team-card__inner">
         <div className="team-card__face team-card__front">
           {person.photo
@@ -21,7 +22,8 @@ function TeamCard({ person }: { person: typeof TEAM[0] }) {
           <div className="team-card__name" style={{ color: '#fff' }}>{person.name}</div>
           {person.role && <div className="team-card__role" style={{ fontSize: 11.5, marginTop: 6, lineHeight: 1.4 }}>{person.role}</div>}
           {person.bio && <p className="team-card__back-bio">{person.bio}</p>}
-          <a href={SOCIAL_LINKS[0].href} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="team-card__back-linkedin">
+          <a href={SOCIAL_LINKS[0].href} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="team-card__back-linkedin"
+            onClick={e => e.stopPropagation()}>
             <svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor" style={{ display: 'block' }}><path d={SOCIAL_LINKS[0].path} /></svg>
           </a>
         </div>
