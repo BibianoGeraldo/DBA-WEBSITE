@@ -1,9 +1,9 @@
 'use client';
-import { useState } from 'react';
+import { useState, useRef, useCallback, useEffect } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { useRevealObserver } from '@/hooks/useRevealObserver';
 import { ContactStrip } from '@/components/sections/ContactStrip';
-import { Arrow } from '@/components/ui/Arrow';
+import { Arrow, ChevronLeft, ChevronRight } from '@/components/ui/Arrow';
 import { SERVICES, type Service } from '@/lib/data';
 
 const SERVICE_DETAIL_IMGS: Record<string, string> = {
@@ -18,8 +18,22 @@ const SERVICE_DETAIL_IMGS: Record<string, string> = {
 function OtherServiceCard({ s, onClick }: { s: Service; onClick: () => void }) {
   const [hover, setHover] = useState(false);
   return (
-    <div onClick={onClick} onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}
-      style={{ display: 'flex', flexDirection: 'column', cursor: 'pointer', borderRadius: 28, overflow: 'hidden', background: hover ? '#11bf74' : 'var(--c-bg-2)', height: '100%', transform: hover ? 'translateY(-12px)' : 'none', transition: 'background-color .35s ease, transform .35s cubic-bezier(.2,.65,.2,1)', paddingTop: 12 }}>
+    <div
+      onClick={onClick}
+      onMouseEnter={() => setHover(true)}
+      onMouseLeave={() => setHover(false)}
+      data-svc-other-card
+      style={{
+        display: 'flex', flexDirection: 'column', cursor: 'pointer',
+        borderRadius: 28, overflow: 'hidden',
+        background: hover ? '#11bf74' : 'var(--c-bg-2)',
+        flex: '0 0 240px', width: 240,
+        scrollSnapAlign: 'start',
+        transform: hover ? 'translateY(-12px)' : 'none',
+        transition: 'background-color .35s ease, transform .35s cubic-bezier(.2,.65,.2,1)',
+        paddingTop: 12,
+      }}
+    >
       <div style={{ color: hover ? '#fff' : 'var(--c-ink)', padding: '22px 20px', fontSize: 14, fontWeight: 600, lineHeight: 1.25, letterSpacing: '-0.005em', minHeight: 88, display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 10, transition: 'color .35s ease', flex: '0 0 auto' }}>
         <span>{s.title}</span>
         <span style={{ width: 26, height: 26, borderRadius: '50%', background: hover ? '#fff' : 'rgba(0,0,0,.08)', color: hover ? '#11bf74' : 'var(--c-ink)', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', flex: '0 0 26px', transition: 'background-color .35s ease, color .35s ease' }}>
@@ -38,6 +52,37 @@ export default function ServiceDetailPage() {
   const router = useRouter();
   const id = params.id as string;
   useRevealObserver();
+
+  const trackRef = useRef<HTMLDivElement>(null);
+  const [atStart, setAtStart] = useState(true);
+  const [atEnd, setAtEnd] = useState(false);
+
+  const updateScrollState = useCallback(() => {
+    const t = trackRef.current;
+    if (!t) return;
+    setAtStart(t.scrollLeft <= 4);
+    setAtEnd(t.scrollLeft + t.clientWidth >= t.scrollWidth - 4);
+  }, []);
+
+  useEffect(() => {
+    const t = trackRef.current;
+    if (!t) return;
+    updateScrollState();
+    t.addEventListener('scroll', updateScrollState, { passive: true });
+    window.addEventListener('resize', updateScrollState);
+    return () => {
+      t.removeEventListener('scroll', updateScrollState);
+      window.removeEventListener('resize', updateScrollState);
+    };
+  }, [updateScrollState]);
+
+  const scrollBy = (dir: number) => {
+    const t = trackRef.current;
+    if (!t) return;
+    const card = t.querySelector<HTMLElement>('[data-svc-other-card]');
+    const step = card ? card.offsetWidth + 16 : 256;
+    t.scrollBy({ left: dir * step, behavior: 'smooth' });
+  };
 
   const s = SERVICES.find(x => x.id === id);
   if (!s) return null;
@@ -58,16 +103,16 @@ export default function ServiceDetailPage() {
         <div className="svc-hero__divider" />
       </section>
 
-      <section style={{ background: 'var(--c-bg-3, #f1f3f6)', padding: '56px 0' }}>
-        <div className="container" style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 340px) minmax(0, 1fr)', gap: 44, alignItems: 'stretch' }}>
-          <div data-reveal="left" style={{ aspectRatio: '1/1', borderRadius: 18, overflow: 'hidden', background: '#fff', boxShadow: 'var(--shadow-sm)', maxWidth: 340 }}>
+      <section className="svc-detail-body">
+        <div className="container svc-detail-layout">
+          <div data-reveal="left" className="svc-detail-img">
             <div style={{ width: '100%', height: '100%', backgroundImage: `url(${imgUrl})`, backgroundSize: 'cover', backgroundPosition: 'center' }} />
           </div>
 
-          <div data-reveal="right" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', paddingTop: 8, paddingBottom: 8, gap: 32 }}>
+          <div data-reveal="right" className="svc-detail-content">
             <h2 style={{ fontSize: 'clamp(22px, 2.2vw, 32px)', fontWeight: 500 }}>Áreas de actuação</h2>
 
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px 28px' }}>
+            <div className="svc-areas-grid">
               {[colA, colB].map((col, idx) => (
                 <ul key={idx} style={{ listStyle: 'none', padding: 0, margin: 0, display: 'grid', gap: 12 }}>
                   {col.map(a => (
@@ -95,13 +140,29 @@ export default function ServiceDetailPage() {
 
       <section className="section">
         <div className="container">
-          <h2 data-reveal style={{ textAlign: 'center', fontSize: 'clamp(24px, 2.8vw, 38px)', fontWeight: 500, marginBottom: 56, lineHeight: 1.2 }}>
+          <h2 data-reveal style={{ textAlign: 'center', fontSize: 'clamp(24px, 2.8vw, 38px)', fontWeight: 500, marginBottom: 40, lineHeight: 1.2 }}>
             Conheça mais dos nossos<br/>Serviços &amp; Produtos
           </h2>
-          <div data-stagger style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: 16, alignItems: 'stretch' }}>
-            {others.map(o => (
-              <OtherServiceCard key={o.id} s={o} onClick={() => router.push(`/services/${o.id}`)} />
-            ))}
+          <div style={{ position: 'relative' }}>
+            {!atStart && (
+              <button className="svc-arrow svc-arrow--left" aria-label="Anterior" onClick={() => scrollBy(-1)}>
+                <ChevronLeft />
+              </button>
+            )}
+            {!atEnd && (
+              <button className="svc-arrow svc-arrow--right" aria-label="Próximo" onClick={() => scrollBy(1)}>
+                <ChevronRight />
+              </button>
+            )}
+            <div
+              ref={trackRef}
+              className="svc-carousel-track"
+              style={{ display: 'flex', gap: 16, overflowX: 'auto', overflowY: 'visible', scrollSnapType: 'x mandatory', padding: '8px 0 24px' }}
+            >
+              {others.map(o => (
+                <OtherServiceCard key={o.id} s={o} onClick={() => router.push(`/services/${o.id}`)} />
+              ))}
+            </div>
           </div>
         </div>
       </section>

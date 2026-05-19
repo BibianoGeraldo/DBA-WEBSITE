@@ -39,7 +39,7 @@ export function Logo({ size = 40, withWordmark = true, color = 'inherit' }: { si
         </div>
       </div>
       {withWordmark && (
-        <span style={{ fontWeight: 600, fontSize: 15, letterSpacing: '-0.01em', color: 'inherit' }}>
+        <span className="logo-wordmark" style={{ fontWeight: 600, fontSize: 15, letterSpacing: '-0.01em', color: 'inherit' }}>
           DB &amp; Associados
         </span>
       )}
@@ -56,7 +56,7 @@ export function LogoLight({ size = 40, withWordmark = true }: { size?: number; w
         </div>
       </div>
       {withWordmark && (
-        <span style={{ fontWeight: 600, fontSize: 15, letterSpacing: '-0.01em' }}>
+        <span className="logo-wordmark" style={{ fontWeight: 600, fontSize: 15, letterSpacing: '-0.01em' }}>
           DB &amp; Associados
         </span>
       )}

@@ -31,7 +31,7 @@ function AudienceCard({ title, body, cta, color, colorHex, to }: { title: string
   const router = useRouter();
   const wipe = useWipe();
   return (
-    <div style={{ background: color, borderRadius: 22, padding: '36px 36px 28px', position: 'relative', overflow: 'hidden', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', gap: 28, color: '#fff' }}>
+    <div className="audience-card" style={{ background: color, borderRadius: 22, padding: '36px 36px 28px', position: 'relative', overflow: 'hidden', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', gap: 28, color: '#fff' }}>
       <div>
         <h3 style={{ color: '#fff', fontSize: 'clamp(22px, 2.2vw, 32px)', fontWeight: 500, letterSpacing: '-0.02em', marginBottom: 18, lineHeight: 1.1 }}>{title}</h3>
         <p style={{ color: 'rgba(255,255,255,.92)', fontSize: 15, lineHeight: 1.55, maxWidth: 460 }}>{body}</p>
@@ -86,7 +86,7 @@ export default function HomePage() {
           </p>
         </div>
         <div className="container" data-reveal="zoom" data-delay="300">
-          <div style={{ borderRadius: 18, overflow: 'hidden', aspectRatio: '21/3.2', position: 'relative', boxShadow: 'var(--shadow-sm)' }}>
+          <div className="hero-banner">
             <div className="img-hero-frame" style={{ position: 'absolute', inset: 0, backgroundImage: `url(${HOME_HERO_IMG})`, backgroundSize: 'cover', backgroundPosition: 'center' }} />
           </div>
         </div>
@@ -94,7 +94,7 @@ export default function HomePage() {
 
       <section className="section section--tight" style={{ paddingTop: 24 }}>
         <div className="container">
-          <div data-stagger style={{ display: 'grid', gridTemplateColumns: '55fr 45fr', gap: 20 }}>
+          <div data-stagger className="audience-grid">
             <AudienceCard title="Sou uma grande empresa" body="Apoio especializado para multinacionais e grandes grupos com operações em Moçambique." cta="Explorar os nossos serviços Corporate" color="var(--c-blue)" colorHex="#0165dd" to="/services" />
             <AudienceCard title="Sou uma PME" body="Descubra soluções criadas à medida para Pequenas e Médias Empresas moçambicanas" cta="Aceder ao PME-HUB" color="var(--c-green)" colorHex="#11bf74" to="/contact" />
           </div>
@@ -102,7 +102,7 @@ export default function HomePage() {
       </section>
 
       <section className="section section--tight">
-        <div className="container" style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 1fr) minmax(0, 1.05fr)', gap: 80, alignItems: 'center' }}>
+        <div className="container about-split">
           <div data-reveal>
             <h2 style={{ fontSize: 'clamp(26px, 2.8vw, 40px)', fontWeight: 500, marginBottom: 28 }}>Quem somos?</h2>
             <p style={{ fontSize: 16, color: 'var(--c-mute)', lineHeight: 1.65, maxWidth: 520, marginBottom: 40 }}>
@@ -125,7 +125,7 @@ export default function HomePage() {
               </span>
             </button>
           </div>
-          <div data-reveal="right" data-stagger style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20 }}>
+          <div data-reveal="right" data-stagger className="about-imgs">
             {(['bulb', 'building'] as const).map(v => (
               <div key={v} style={{ aspectRatio: '1/1', borderRadius: 20, overflow: 'hidden', backgroundImage: `url(${QUEM_SOMOS_IMGS[v]})`, backgroundSize: 'cover', backgroundPosition: 'center' }} />
             ))}
@@ -135,11 +135,11 @@ export default function HomePage() {
 
       <section className="section">
         <div className="container">
-          <div data-reveal="zoom" style={{ borderRadius: '20px 20px 0 0', overflow: 'hidden', aspectRatio: '21/5', position: 'relative', boxShadow: 'var(--shadow-sm)', marginBottom: 40 }}>
+          <div data-reveal="zoom" className="why-banner">
             <div className="img-hero-frame" style={{ position: 'absolute', inset: 0, backgroundImage: 'url(https://picsum.photos/seed/dba-why/2400/560)', backgroundSize: 'cover', backgroundPosition: 'center' }} />
           </div>
           <h2 data-reveal style={{ textAlign: 'center', fontSize: 'clamp(24px, 2.6vw, 36px)', fontWeight: 500, marginBottom: 48 }}>Porquê Trabalhar Connosco?</h2>
-          <div data-stagger style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 24 }}>
+          <div data-stagger className="why-grid">
             <WhyCard mesh="triangle" color="#1d6fa9" big="36+" label="Anos de Experiência" body="Nossa equipa possui mais de 36 anos de experiência acumulada em firmas Big Four." />
             <WhyCard mesh="sphere"   color="#0a0a0a" big="Moz"  label="Conhecimento Local"  body="Conhecimento profundo do contexto legal e fiscal moçambicano." />
             <WhyCard mesh="diamond"  color="#c8243d" big="Team" label="Equipa Sénior"       body="Equipa sénior envolvida diretamente em todos os projetos do início ao fim." />
@@ -174,7 +174,7 @@ export default function HomePage() {
               Apoiamos empresas locais e multinacionais em sectores estratégicos da economia moçambicana.
             </p>
           </div>
-          <div data-stagger style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 20 }}>
+          <div data-stagger className="ind-pills-grid">
             <IndustryPill color="#0165dd" label="Energia"          href="/industries#energia" />
             <IndustryPill color="#11bf74" label="Telecomunicações" href="/industries#telecomunicacoes" />
             <IndustryPill color="#0a0a0a" label="Grande Consumo"   href="/industries#grande-consumo" />

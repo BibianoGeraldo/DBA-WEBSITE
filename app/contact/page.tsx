@@ -4,6 +4,8 @@ import { ContactBlock } from '@/components/sections/ContactBlock';
 import { Arrow } from '@/components/ui/Arrow';
 import { CONTACT_DIRECTS } from '@/lib/data';
 
+const MAP_URL = 'https://www.google.com/maps/search/?api=1&query=Rua%20dos%20Desportistas%20833%20JAT%205-1%209%20Andar%20Maputo%20Mocambique';
+
 export default function ContactPage() {
   useRevealObserver();
 
@@ -49,10 +51,10 @@ export default function ContactPage() {
           <div className="contact-location__grid">
             <div data-reveal="left" className="contact-location__left">
               <h2 className="contact-location__title">Localização do<br />Escritório</h2>
-              <div className="contact-location__addr">
+              <a href={MAP_URL} target="_blank" rel="noopener noreferrer" className="contact-location__addr contact-info-link">
                 Rua dos Desportistas, n.º 833, JAT 5-1, 9.º Andar<br />
                 Maputo, Moçambique
-              </div>
+              </a>
             </div>
             <div data-reveal="right" className="contact-location__map">
               <iframe

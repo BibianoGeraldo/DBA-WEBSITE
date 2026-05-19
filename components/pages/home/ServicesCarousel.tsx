@@ -75,7 +75,7 @@ export function ServicesCarousel({ services }: { services: Service[] }) {
       <div style={{ position: 'relative' }}>
         {!atStart && <button className="svc-arrow svc-arrow--left" aria-label="Anterior" onClick={() => scrollBy(-1)}><ChevronLeft /></button>}
         {!atEnd && <button className="svc-arrow svc-arrow--right" aria-label="Próximo" onClick={() => scrollBy(1)}><ChevronRight /></button>}
-        <div ref={trackRef} className="svc-carousel-track" style={{ display: 'flex', gap: 20, overflowX: 'auto', overflowY: 'visible', scrollSnapType: 'x mandatory', margin: '0 -28px', padding: '8px 28px 24px' }}>
+        <div ref={trackRef} className="svc-carousel-track" style={{ display: 'flex', gap: 20, overflowX: 'auto', overflowY: 'visible', scrollSnapType: 'x mandatory', padding: '8px 8px 24px' }}>
           {services.map((s, idx) => (
             <ServiceCarouselCard key={s.id} s={s} active={idx === hoverIdx} onMouseEnter={() => setHoverIdx(idx)} onMouseLeave={() => setHoverIdx(null)} />
           ))}

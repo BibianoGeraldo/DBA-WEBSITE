@@ -1,9 +1,13 @@
 'use client';
 import { useState } from 'react';
-import Link from 'next/link';
 import { Icon } from '@/components/ui/Icon';
 import { Arrow } from '@/components/ui/Arrow';
 import { SOCIAL_LINKS } from '@/lib/data';
+
+const PHONE_DISPLAY = '+258 85 222 2016';
+const PHONE_HREF = 'tel:+258852222016';
+const EMAIL = 'info@dba.co.mz';
+const MAP_URL = 'https://www.google.com/maps/search/?api=1&query=Rua%20dos%20Desportistas%20833%20JAT%205-1%209%20Andar%20Maputo%20Mocambique';
 
 function SocialCircle({ children, ariaLabel, href = '#' }: { children: React.ReactNode; ariaLabel: string; href?: string }) {
   return (
@@ -14,11 +18,19 @@ function SocialCircle({ children, ariaLabel, href = '#' }: { children: React.Rea
   );
 }
 
-function ContactInfoBlock({ title, value }: { title: string; value: React.ReactNode }) {
+function ContactInfoBlock({ title, value, href, external }: { title: string; value: React.ReactNode; href: string; external?: boolean }) {
   return (
     <div>
       <h4 style={{ color: '#fff', fontSize: 22, fontWeight: 500, marginBottom: 10, letterSpacing: '-0.01em' }}>{title}</h4>
-      <div style={{ fontSize: 15, color: 'rgba(255,255,255,.9)', lineHeight: 1.5 }}>{value}</div>
+      <a
+        href={href}
+        className="contact-info-link"
+        target={external ? '_blank' : undefined}
+        rel={external ? 'noopener noreferrer' : undefined}
+        style={{ fontSize: 15, color: 'rgba(255,255,255,.9)', lineHeight: 1.5 }}
+      >
+        {value}
+      </a>
     </div>
   );
 }
@@ -92,7 +104,7 @@ export function ContactBlock() {
   return (
     <section className="contact-block">
       <div className="container">
-        <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 1fr) minmax(0, 1.1fr)', gap: 56, alignItems: 'flex-start', padding: '72px 0' }}>
+        <div className="contact-block__inner">
           <div style={{ color: '#fff' }}>
             <h2 style={{ color: '#fff', fontSize: 'clamp(26px, 2.8vw, 40px)', fontWeight: 500, letterSpacing: '-0.025em', lineHeight: 1.1, marginBottom: 30 }}>
               Fale connosco.<br/>Estamos aqui para ajudar.
@@ -104,10 +116,10 @@ export function ContactBlock() {
             <p style={{ fontSize: 16, color: 'rgba(255,255,255,.92)', lineHeight: 1.55, marginBottom: 44, maxWidth: 520 }}>
               Quer pretenda marcar uma reunião, esclarecer dúvidas ou saber mais sobre os nossos serviços, estamos à distância de um clique.
             </p>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 32, rowGap: 36 }}>
-              <ContactInfoBlock title="Contactos"   value="+258 85 222 2016" />
-              <ContactInfoBlock title="Localização" value={<span>Rua dos Desportistas, n.º 833,<br/>JAT 5-1, 9.º Andar<br/>Maputo, Moçambique</span>} />
-              <ContactInfoBlock title="Email"       value="info@dba.co.mz" />
+            <div className="contact-info-grid">
+              <ContactInfoBlock title="Contactos"   value={PHONE_DISPLAY} href={PHONE_HREF} />
+              <ContactInfoBlock title="Localização" value={<span>Rua dos Desportistas, n.º 833,<br/>JAT 5-1, 9.º Andar<br/>Maputo, Moçambique</span>} href={MAP_URL} external />
+              <ContactInfoBlock title="Email"       value={EMAIL} href={`mailto:${EMAIL}`} />
               <div>
                 <h4 style={{ color: '#fff', fontSize: 22, fontWeight: 500, marginBottom: 16 }}>Social Network</h4>
                 <div style={{ display: 'flex', gap: 10 }}>
@@ -120,7 +132,7 @@ export function ContactBlock() {
               </div>
             </div>
           </div>
-          <div style={{ background: 'var(--c-bg-2)', borderRadius: 28, padding: '44px 44px 36px' }}>
+          <div className="contact-form-box">
             <ContactForm />
           </div>
         </div>

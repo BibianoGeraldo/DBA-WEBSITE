@@ -79,7 +79,7 @@ export default function ServicesPage() {
 
       <section className="section svc-list">
         <div className="container">
-          <div data-stagger style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 24 }}>
+          <div data-stagger className="svc-grid">
             {SERVICES.map(s => (
               <ServiceTile key={s.id} s={s}
                 featured={s.id === hoverId}

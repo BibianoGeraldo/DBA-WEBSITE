@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { Albert_Sans } from 'next/font/google';
 import './globals.css';
 import { Header } from '@/components/layout/Header';
@@ -17,14 +17,22 @@ export const metadata: Metadata = {
   description: 'Consultoria fiscal, contabilidade, avaliação de empresas e ESG em Moçambique. Legado de Big 4, excelência local.',
 };
 
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+};
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="pt" className={albertSans.variable}>
       <body>
         <ScrollToTop />
         <Header />
-        {children}
-        <Footer />
+        <div className="page-content">
+          {children}
+          <Footer />
+        </div>
       </body>
     </html>
   );
