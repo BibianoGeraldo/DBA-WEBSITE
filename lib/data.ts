@@ -144,7 +144,6 @@ export const TEAM: TeamMember[] = [
     photo: '/Team/ivan-veloso.png',
     bio: 'Experiência sénior em planeamento fiscal, M&A e estruturação cross-border para grupos multinacionais com operações em Moçambique.',
   },
-  { name: 'Alix Llasse',        role: 'Marketing & Brand Strategist | Luxury & Fashion Business Consultant', photo: '/Team/alix-liasse.png',        bio: '' },
   { name: 'Arlindo Gordhandas', role: '',                                                                     photo: '/Team/arlindo-gordhandas.png', bio: '' },
   { name: 'Fausto Massunga',    role: '',                                                                     photo: '/Team/fausto-massunga.png',    bio: '' },
   { name: 'Marlo Boaventura',   role: '',                                                                     photo: '/Team/marlo-boaventura.png',   bio: '' },

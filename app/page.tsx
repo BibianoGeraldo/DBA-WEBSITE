@@ -57,8 +57,12 @@ function AudienceCard({ title, body, cta, color, colorHex, to }: { title: string
 
 function IndustryPill({ color, label, href }: { color: string; label: string; href: string }) {
   const router = useRouter();
+  const handleClick = () => {
+    const [path, hash] = href.split('#');
+    router.push(hash ? `${path}?to=${hash}` : href);
+  };
   return (
-    <button className="ind-pill" onClick={() => router.push(href)}
+    <button className="ind-pill" onClick={handleClick}
       style={{ background: color, color: '#fff', border: 0, borderRadius: 999, height: 64, padding: '0 20px', fontSize: 16, fontWeight: 500, cursor: 'pointer', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: 10 }}>
       {label}
       <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ opacity: .75 }}><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13 6 19 12 13 18"/></svg>

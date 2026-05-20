@@ -52,7 +52,7 @@ function UnderlineField({ label, required, value, onChange, multiline }: { label
 }
 
 function ContactForm() {
-  const [state, setState] = useState({ name: '', company: '', phone: '', message: '' });
+  const [state, setState] = useState({ name: '', email: '', message: '' });
   const [sent, setSent] = useState(false);
   const [loading, setLoading] = useState(false);
   const change = (k: keyof typeof state) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => setState(s => ({ ...s, [k]: e.target.value }));
@@ -72,7 +72,7 @@ function ContactForm() {
         <p style={{ color: 'var(--c-mute)', fontSize: 15.5, lineHeight: 1.55, maxWidth: 360, marginInline: 'auto' }}>
           Obrigado, {state.name || 'colega'}. Um Partner responde-lhe pessoalmente em 24 horas úteis (Seg-Sex).
         </p>
-        <button className="btn btn--ghost" style={{ marginTop: 24 }} onClick={() => { setSent(false); setState({ name: '', company: '', phone: '', message: '' }); }}>
+        <button className="btn btn--ghost" style={{ marginTop: 24 }} onClick={() => { setSent(false); setState({ name: '', email: '', message: '' }); }}>
           Enviar nova mensagem
         </button>
       </div>
@@ -82,8 +82,7 @@ function ContactForm() {
   return (
     <form onSubmit={submit} style={{ display: 'grid', gap: 28 }}>
       <UnderlineField label="Nome Completo" required value={state.name} onChange={change('name')} />
-      <UnderlineField label="Empresa"       required value={state.company} onChange={change('company')} />
-      <UnderlineField label="Telefone (opcional)"    value={state.phone} onChange={change('phone')} />
+      <UnderlineField label="Email"         required value={state.email} onChange={change('email')} />
       <UnderlineField label="Mensagem"      required value={state.message} onChange={change('message')} multiline />
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 16, flexWrap: 'wrap', marginTop: 12 }}>
         <button type="submit" disabled={loading} className="send-btn">

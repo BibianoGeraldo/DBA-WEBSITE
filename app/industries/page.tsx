@@ -1,5 +1,5 @@
 'use client';
-import { useEffect } from 'react';
+import { useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { useRevealObserver } from '@/hooks/useRevealObserver';
 import { ContactStrip } from '@/components/sections/ContactStrip';
@@ -25,21 +25,23 @@ function IndustryCard({ item }: { item: Industry }) {
   );
 }
 
-export default function IndustriesPage() {
+function IndustriesPageInner() {
+  const searchParams = useSearchParams();
+  const to = searchParams.get('to');
   useRevealObserver();
 
   useEffect(() => {
-    const hash = window.location.hash.replace('#', '');
-    if (!hash) return;
+    const target = to || window.location.hash.replace('#', '');
+    if (!target) return;
     const timer = setTimeout(() => {
-      const el = document.getElementById(hash);
+      const el = document.getElementById(target);
       if (!el) return;
       el.scrollIntoView({ behavior: 'smooth', block: 'center' });
       el.classList.add('ind-card--hl');
       setTimeout(() => el.classList.remove('ind-card--hl'), 2200);
     }, 400);
     return () => clearTimeout(timer);
-  }, []);
+  }, [to]);
 
   return (
     <main className="page-enter ind-page">
@@ -82,5 +84,13 @@ export default function IndustriesPage() {
 
       <ContactStrip />
     </main>
+  );
+}
+
+export default function IndustriesPage() {
+  return (
+    <Suspense>
+      <IndustriesPageInner />
+    </Suspense>
   );
 }
