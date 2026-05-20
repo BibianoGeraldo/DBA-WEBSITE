@@ -37,18 +37,15 @@ function AudienceCard({ title, body, cta, color, colorHex, to }: { title: string
         <p style={{ color: 'rgba(255,255,255,.92)', fontSize: 15, lineHeight: 1.55, maxWidth: 460 }}>{body}</p>
       </div>
       <button ref={wipe.ref} className="audience-cta btn-wipe" onClick={() => router.push(to)} onMouseEnter={wipe.onMouseEnter} onMouseLeave={wipe.onMouseLeave}
-        style={{ '--wipe-bg': shade(colorHex, -38), alignSelf: 'flex-start', background: '#fff', border: 0, borderRadius: 999, cursor: 'pointer' } as React.CSSProperties}>
-        <span style={{ display: 'inline-flex', alignItems: 'center', gap: 18, padding: '6px 6px 6px 26px', fontSize: 15.5, fontWeight: 500, color: colorHex }}>
-          <span className="wipe-text">{cta}</span>
-          <span className="btn-circle" style={{ width: 38, height: 38, borderRadius: '50%', background: `linear-gradient(135deg, ${shade(colorHex, 10)} 0%, ${colorHex} 50%, ${shade(colorHex, -25)} 100%)`, color: '#fff', display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>
-            <Arrow size={14} />
+        style={{ '--wipe-bg': shade(colorHex, -38), alignSelf: 'flex-start', cursor: 'pointer', borderRadius: 999 } as React.CSSProperties}>
+        <span className="btn-wipe-inner" style={{ background: '#fff' }}>
+          <span style={{ display: 'inline-flex', alignItems: 'center', gap: 18, padding: '6px 6px 6px 26px', fontSize: 15.5, fontWeight: 500, color: colorHex }}>
+            <span className="wipe-text">{cta}</span>
+            <span className="btn-circle" style={{ width: 38, height: 38, borderRadius: '50%', backgroundColor: colorHex, color: '#fff', display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>
+              <Arrow size={14} />
+            </span>
           </span>
-        </span>
-        <span className="wipe-filled" aria-hidden="true" style={{ gap: 18, padding: '6px 6px 6px 26px', fontSize: 15.5, fontWeight: 500, color: '#fff' }}>
-          <span className="wipe-text">{cta}</span>
-          <span className="btn-circle" style={{ width: 38, height: 38, borderRadius: '50%', background: '#fff', color: 'var(--wipe-bg, var(--c-blue))', display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>
-            <Arrow size={14} />
-          </span>
+          <span className="wipe-filled" aria-hidden="true" />
         </span>
       </button>
     </div>
@@ -114,18 +111,15 @@ export default function HomePage() {
             </p>
             <button ref={wipeAbout.ref} onClick={() => router.push('/about')} className="btn-wipe"
               onMouseEnter={wipeAbout.onMouseEnter} onMouseLeave={wipeAbout.onMouseLeave}
-              style={{ '--wipe-bg': 'var(--c-blue)', background: 'var(--c-bg-2)', border: 0, borderRadius: 999, cursor: 'pointer' } as React.CSSProperties}>
-              <span style={{ display: 'inline-flex', alignItems: 'center', gap: 18, padding: '6px 6px 6px 24px', fontSize: 15, fontWeight: 500, color: 'var(--c-blue)' }}>
-                <span className="wipe-text">Conheça-nos melhor</span>
-                <span className="btn-circle" style={{ width: 38, height: 38, borderRadius: '50%', background: 'linear-gradient(135deg, #2589ee 0%, #0165dd 50%, #0a3e80 100%)', color: '#fff', display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>
-                  <Arrow size={14} />
+              style={{ '--wipe-bg': 'var(--c-blue)', cursor: 'pointer', borderRadius: 999 } as React.CSSProperties}>
+              <span className="btn-wipe-inner" style={{ background: 'var(--c-bg-2)' }}>
+                <span style={{ display: 'inline-flex', alignItems: 'center', gap: 18, padding: '6px 6px 6px 24px', fontSize: 15, fontWeight: 500, color: 'var(--c-blue)' }}>
+                  <span className="wipe-text">Conheça-nos melhor</span>
+                  <span className="btn-circle" style={{ width: 38, height: 38, borderRadius: '50%', backgroundColor: '#0165dd', color: '#fff', display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>
+                    <Arrow size={14} />
+                  </span>
                 </span>
-              </span>
-              <span className="wipe-filled" aria-hidden="true" style={{ gap: 18, padding: '6px 6px 6px 24px', fontSize: 15, fontWeight: 500, color: '#fff' }}>
-                <span className="wipe-text">Conheça-nos melhor</span>
-                <span className="btn-circle" style={{ width: 38, height: 38, borderRadius: '50%', background: '#fff', color: 'var(--c-blue)', display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>
-                  <Arrow size={14} />
-                </span>
+                <span className="wipe-filled" aria-hidden="true" />
               </span>
             </button>
           </div>
