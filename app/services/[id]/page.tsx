@@ -85,7 +85,15 @@ export default function ServiceDetailPage() {
   };
 
   const s = SERVICES.find(x => x.id === id);
-  if (!s) return null;
+  if (!s) return (
+    <main className="page-enter" style={{ paddingTop: 'calc(var(--header-h) + 80px)', textAlign: 'center', minHeight: '60vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+      <div>
+        <h1 style={{ fontSize: 'clamp(22px, 2.5vw, 32px)', fontWeight: 500, marginBottom: 16 }}>Serviço não encontrado</h1>
+        <p style={{ color: 'var(--c-mute)', marginBottom: 32 }}>O serviço que procura não existe ou foi removido.</p>
+        <a href="/services" className="btn btn--primary">Ver todos os serviços</a>
+      </div>
+    </main>
+  );
 
   const others = SERVICES.filter(x => x.id !== s.id);
   const half = Math.ceil(s.areas.length / 2);

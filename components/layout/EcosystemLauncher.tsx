@@ -6,7 +6,14 @@ import { ECOSYSTEM_ITEMS } from '@/lib/data';
 
 export function EcosystemLauncher() {
   const [open, setOpen] = useState(false);
+  const [visible, setVisible] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (open) { setVisible(true); return; }
+    const t = setTimeout(() => setVisible(false), 180);
+    return () => clearTimeout(t);
+  }, [open]);
 
   useEffect(() => {
     if (!open) return;
@@ -30,8 +37,8 @@ export function EcosystemLauncher() {
       >
         <NineDots size={18} />
       </button>
-      {open && (
-        <div className="ecosystem__popup" role="dialog" aria-label="Ecossistema dBA">
+      {visible && (
+        <div className={`ecosystem__popup${open ? ' is-open' : ' is-closing'}`} role="dialog" aria-label="Ecossistema dBA">
           <div className="ecosystem__title">Ecossistema dBA</div>
           <div className="ecosystem__grid">
             {ECOSYSTEM_ITEMS.map(item => (

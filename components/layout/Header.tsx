@@ -44,7 +44,7 @@ export function Header() {
       <div className={`header-wrap ${scrolled ? 'is-scrolled' : ''}`}>
         <header className={`header ${scrolled ? 'is-scrolled' : ''}`}>
           <div className="container header__row">
-            <Link href="/" className="header__brand" onClick={() => setOpen(false)}>
+            <Link href="/" className="header__brand" aria-label="dBA – DB & Associados, página inicial" onClick={() => setOpen(false)}>
               <Logo size={40} />
             </Link>
 

@@ -13,7 +13,7 @@ export function useRevealObserver(dep?: unknown) {
             if (target.hasAttribute('data-stagger')) {
               target.classList.add('is-in');
               Array.from(target.children).forEach((child, i) => {
-                setTimeout(() => child.classList.add('is-in'), i * 180);
+                setTimeout(() => child.classList.add('is-in'), i * 90);
               });
             } else {
               const d = target.getAttribute('data-delay');

@@ -35,7 +35,7 @@ function ContactInfoBlock({ title, value, href, external }: { title: string; val
   );
 }
 
-function UnderlineField({ label, required, value, onChange, multiline }: { label: string; required?: boolean; value: string; onChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void; multiline?: boolean }) {
+function UnderlineField({ label, required, value, onChange, multiline, type = 'text' }: { label: string; required?: boolean; value: string; onChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void; multiline?: boolean; type?: string }) {
   const [focused, setFocused] = useState(false);
   const Tag = multiline ? 'textarea' : 'input';
   return (
@@ -43,7 +43,7 @@ function UnderlineField({ label, required, value, onChange, multiline }: { label
       <label className={`underline-field-label${focused ? ' underline-field-label--focused' : ''}`} style={{ display: 'block', fontSize: 14.5, color: 'var(--c-mute)', marginBottom: 8 }}>
         {label}{required && <span style={{ color: focused ? 'var(--c-blue)' : 'var(--c-mute)' }}>*</span>}
       </label>
-      <Tag required={required} value={value} onChange={onChange} rows={multiline ? 2 : undefined}
+      <Tag type={multiline ? undefined : type} required={required} value={value} onChange={onChange} rows={multiline ? 4 : undefined}
         className="underline-field-input"
         style={{ width: '100%', background: 'transparent', border: 0, borderBottom: '1px solid rgba(0,0,0,.25)', padding: '6px 0 10px', font: 'inherit', fontSize: 15, color: 'var(--c-ink)', outline: 'none', resize: multiline ? 'vertical' : 'none' }}
         onFocus={() => setFocused(true)} onBlur={() => setFocused(false)} />
@@ -82,7 +82,7 @@ function ContactForm() {
   return (
     <form onSubmit={submit} style={{ display: 'grid', gap: 28 }}>
       <UnderlineField label="Nome Completo" required value={state.name} onChange={change('name')} />
-      <UnderlineField label="Email"         required value={state.email} onChange={change('email')} />
+      <UnderlineField label="Email"         required type="email" value={state.email} onChange={change('email')} />
       <UnderlineField label="Mensagem"      required value={state.message} onChange={change('message')} multiline />
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 16, flexWrap: 'wrap', marginTop: 12 }}>
         <button type="submit" disabled={loading} className="send-btn">
