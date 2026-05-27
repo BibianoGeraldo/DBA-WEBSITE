@@ -109,7 +109,7 @@ export function ContactBlock() {
               Fale connosco.<br/>Estamos aqui para ajudar.
             </h2>
             <p style={{ fontSize: 13.5, color: 'rgba(255,255,255,.85)', lineHeight: 1.55, marginBottom: 20 }}>
-              <span style={{ color: '#fff' }}>*</span>Alguns serviços são prestados por empresas especializadas do Grupo. A DBA actua como ponto único de contacto.
+              <span style={{ color: '#fff' }}>*</span>Alguns serviços são prestados por empresas especializadas do Grupo. A dBA actua como ponto único de contacto.
             </p>
             <div style={{ height: 1, background: 'rgba(255,255,255,.25)', margin: '20px 0 28px' }} />
             <p style={{ fontSize: 16, color: 'rgba(255,255,255,.92)', lineHeight: 1.55, marginBottom: 44, maxWidth: 520 }}>

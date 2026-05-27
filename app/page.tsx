@@ -151,7 +151,7 @@ export default function HomePage() {
           <div data-reveal style={{ textAlign: 'center', marginBottom: 56 }}>
             <h2 style={{ fontSize: 'clamp(26px, 2.8vw, 40px)', fontWeight: 500, marginBottom: 22 }}>Nossa equipa de liderança</h2>
             <p style={{ fontSize: 17, color: 'var(--c-mute)', lineHeight: 1.55, maxWidth: 720, marginInline: 'auto' }}>
-              Conheça os especialistas por trás da DB &amp; Associados, com vasta experiência no mercado e compromisso com a excelência.
+              Conheça os especialistas por trás da dBA, com vasta experiência no mercado e compromisso com a excelência.
             </p>
           </div>
           <LeadershipCarousel />

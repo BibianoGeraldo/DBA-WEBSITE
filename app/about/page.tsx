@@ -84,7 +84,7 @@ export default function AboutPage() {
         <div className="container">
           <h1 data-reveal className="about-hero__title">Construída para a complexidade de fazer negócio em Moçambique.</h1>
           <p data-reveal data-delay="120" className="about-hero__lede">
-            A DBA reúne consultores sénior com conhecimento local profundo e padrões de nível internacional ao serviço de investidores, multinacionais e empresas locais com ambição.
+            A dBA reúne consultores sénior com conhecimento local profundo e padrões de nível internacional ao serviço de investidores, multinacionais e empresas locais com ambição.
           </p>
         </div>
         <div className="about-hero__divider" />
@@ -112,7 +112,7 @@ export default function AboutPage() {
             </div>
           </div>
           <p className="about-team__note">
-            Todos os engagements são liderados ou directamente supervisionados por um Partner DBA nomeado.<br />
+            Todos os engagements são liderados ou directamente supervisionados por um Partner dBA nomeado.<br />
             Não operamos um modelo de pura delegação.
           </p>
         </div>

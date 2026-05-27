@@ -7,7 +7,7 @@ export function Footer() {
         <div style={{ display: 'inline-flex', flexDirection: 'column', alignItems: 'center', gap: 28 }}>
           <LogoWordmark height={64} />
           <div style={{ fontSize: 14, color: 'var(--c-mute)' }}>
-            DB Associados, {new Date().getFullYear()}. Todos direitos reservados.
+            dBA, {new Date().getFullYear()}. Todos direitos reservados.
           </div>
           <div style={{ display: 'flex', gap: 20, fontSize: 13, flexWrap: 'wrap', justifyContent: 'center' }}>
             <a href="#" className="footer-link">Política de Privacidade</a>

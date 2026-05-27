@@ -99,7 +99,7 @@ export const SERVICES: Service[] = [
   {
     id: 'academy',
     icon: 'academy',
-    title: 'Academia DBA',
+    title: 'Academia dBA',
     short: 'Cursos especializados para equipas de gestão.',
     body: 'Cursos especializados em fiscalidade, contabilidade, liderança e outras áreas de negócio. Formação dedicada a equipas de finanças, compliance e gestão.',
     areas: [
@@ -167,7 +167,7 @@ export const ECOSYSTEM_ITEMS: EcosystemItem[] = [
   { label: 'Contabilidade',      icon: 'book',     color: '#11bf74', href: 'https://dba.co.mz/contabilidade' },
   { label: 'Avaliação',          icon: 'chart',    color: '#7e22ce', href: 'https://dba.co.mz/avaliacao' },
   { label: 'Recursos Humanos',   icon: 'people',   color: '#cf5a18', href: 'https://dba.co.mz/rh' },
-  { label: 'Academia DBA',       icon: 'academy',  color: '#c8243d', href: 'https://academia.dba.co.mz' },
+  { label: 'Academia dBA',       icon: 'academy',  color: '#c8243d', href: 'https://academia.dba.co.mz' },
   { label: 'Tecnologia',         icon: 'tech',     color: '#00283c', href: 'https://dba.co.mz/tecnologia' },
   { label: 'ESG & Climate',      icon: 'leaf',     color: '#0a8f55', href: 'https://esg.dba.co.mz' },
   { label: 'Investment Support', icon: 'compass',  color: '#0a6ea8', href: 'https://investment.dba.co.mz' },

@@ -13,7 +13,7 @@ const albertSans = Albert_Sans({
 });
 
 export const metadata: Metadata = {
-  title: 'dBA – DB & Associados | Consultoria em Moçambique',
+  title: 'dBA | Consultoria em Moçambique',
   description: 'Consultoria fiscal, contabilidade, avaliação de empresas e ESG em Moçambique. Legado de Big 4, excelência local.',
 };
 
