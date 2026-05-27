@@ -64,8 +64,8 @@ export default function ServicesPage() {
         <div className="container">
           <h1 data-reveal className="svc-hero__title">Serviços</h1>
           <p data-reveal data-delay="120" className="svc-hero__lede">
-            Ajudamos empresas a navegar pelo complexo sistema fiscal moçambicano com confiança e segurança.
-            Oferecemos apoio completo desde a conformidade até à optimização fiscal, com assessoria contínua e representatividade local.
+            Soluções integradas de consultoria adaptadas à realidade do mercado moçambicano.
+            Da auditoria à assessoria estratégica, cada serviço é desenhado para gerar valor mensurável ao negócio do cliente.
           </p>
         </div>
         <div className="svc-hero__divider" />

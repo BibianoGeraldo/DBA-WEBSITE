@@ -129,6 +129,7 @@ export interface TeamMember {
   role: string;
   photo: string;
   bio: string;
+  linkedin?: string;
 }
 
 export const TEAM: TeamMember[] = [
@@ -137,16 +138,21 @@ export const TEAM: TeamMember[] = [
     role: 'Managing Partner | Especialista em Fiscalidade e Estratégia',
     photo: '/Team/dercio-da-barca.png',
     bio: 'Ex-Partner da Deloitte Moçambique, com 18 anos de experiência na liderança de equipas fiscais e de consultoria. Reconhecido pela abordagem estratégica, capacidade de execução e visão de longo prazo.',
+    linkedin: 'https://www.linkedin.com/in/dercio-da-barca-40079629/',
   },
   {
     name: 'Ivan Veloso',
     role: 'Managing Partner | Especialista em Fiscalidade e Estratégia',
     photo: '/Team/ivan-veloso.png',
     bio: 'Experiência sénior em planeamento fiscal, M&A e estruturação cross-border para grupos multinacionais com operações em Moçambique.',
+    linkedin: 'https://www.linkedin.com/in/ivan-veloso-93430850/',
   },
-  { name: 'Arlindo Gordhandas', role: '',                                                                     photo: '/Team/arlindo-gordhandas.png', bio: '' },
-  { name: 'Fausto Massunga',    role: '',                                                                     photo: '/Team/fausto-massunga.png',    bio: '' },
-  { name: 'Marlo Boaventura',   role: '',                                                                     photo: '/Team/marlo-boaventura.png',   bio: '' },
+  { name: 'Arlindo Gordhandas', role: '', photo: '/Team/arlindo-gordhandas.png', bio: '', linkedin: 'https://www.linkedin.com/in/arlindo-gordhandas-a50341a1/' },
+  { name: 'Fausto Massunga',    role: '', photo: '/Team/fausto-massunga.png',    bio: '', linkedin: 'https://www.linkedin.com/in/fausto-massunga-4376aa167/' },
+  { name: 'Marlo Boaventura',   role: '', photo: '/Team/marlo-boaventura.png',   bio: '' },
+  { name: 'Victor Matavel',     role: '', photo: '',                             bio: '' },
+  { name: 'Fernando Muacha',    role: '', photo: '',                             bio: '' },
+  { name: 'Eugénia Pião',       role: '', photo: '',                             bio: '' },
 ];
 
 export interface EcosystemItem {
@@ -294,7 +300,7 @@ export const CONTACT_DIRECTS = [
 export const VALUES = [
   { t: 'Excelência',        d: 'Entregamos com qualidade, foco no detalhe e melhoria contínua.',     i: 'spark',  dark: false },
   { t: 'Transparência',     d: 'Standards internacionais e disciplina técnica em cada entrega.',      i: 'spark',  dark: true  },
-  { t: 'Rigor',             d: 'Standards internacionais e disciplina técnica em cada entrega.',      i: 'check',  dark: true  },
+  { t: 'Rigor',             d: 'Precisão técnica e zero tolerância ao erro em cada análise e entrega.', i: 'check',  dark: true  },
   { t: 'Agilidade',         d: 'Resposta rápida, pragmática e com ownership.',                       i: 'bolt',   dark: false },
   { t: 'Confidencialidade', d: 'Protecção total da informação e do negócio do cliente.',              i: 'shield', dark: false },
   { t: 'Impacto',           d: 'Construimos soluções que geram valor e sustentabilidade.',            i: 'heart',  dark: true  },

@@ -36,7 +36,7 @@ function AudienceCard({ title, body, cta, color, colorHex, to }: { title: string
         <h3 style={{ color: '#fff', fontSize: 'clamp(22px, 2.2vw, 32px)', fontWeight: 500, letterSpacing: '-0.02em', marginBottom: 18, lineHeight: 1.1 }}>{title}</h3>
         <p style={{ color: 'rgba(255,255,255,.92)', fontSize: 15, lineHeight: 1.55, maxWidth: 460 }}>{body}</p>
       </div>
-      <button ref={wipe.ref} className="audience-cta btn-wipe" onClick={() => router.push(to)} onMouseEnter={wipe.onMouseEnter} onMouseLeave={wipe.onMouseLeave}
+      <button ref={wipe.ref} className="audience-cta btn-wipe" onClick={() => to.startsWith('http') ? window.open(to, '_blank', 'noopener,noreferrer') : router.push(to)} onMouseEnter={wipe.onMouseEnter} onMouseLeave={wipe.onMouseLeave}
         style={{ '--wipe-bg': shade(colorHex, -38), alignSelf: 'flex-start', cursor: 'pointer', borderRadius: 999 } as React.CSSProperties}>
         <span className="btn-wipe-inner" style={{ background: '#fff' }}>
           <span style={{ display: 'inline-flex', alignItems: 'center', gap: 18, padding: '6px 6px 6px 26px', fontSize: 15.5, fontWeight: 500, color: colorHex }}>
@@ -80,7 +80,7 @@ export default function HomePage() {
             Consultoria com legado de Big 4.<br/>Excelência local, padrões internacionais.
           </h1>
           <p data-reveal data-delay="120" className="lede" style={{ margin: '0 auto', maxWidth: 720, fontSize: 'clamp(17px, 1.4vw, 21px)', color: 'var(--c-text)', lineHeight: 1.4 }}>
-            Energia, ESG e investimento climático do research a prontidão para investimento.
+            Auditoria, fiscal, advisory e capital humano — um parceiro para cada etapa do seu negócio.
           </p>
           <p data-reveal data-delay="220" style={{ margin: '28px auto 0', color: 'var(--c-mute)', fontSize: 14 }}>
             Mais de 100 projectos entregues com sucesso em diferentes sectores da economia.
@@ -97,7 +97,7 @@ export default function HomePage() {
         <div className="container">
           <div data-stagger className="audience-grid">
             <AudienceCard title="Sou uma grande empresa" body="Apoio especializado para multinacionais e grandes grupos com operações em Moçambique." cta="Explorar os nossos serviços Corporate" color="var(--c-blue)" colorHex="#0165dd" to="/services" />
-            <AudienceCard title="Sou uma PME" body="Descubra soluções criadas à medida para Pequenas e Médias Empresas moçambicanas" cta="Aceder ao PME-HUB" color="var(--c-green)" colorHex="#11bf74" to="/contact" />
+            <AudienceCard title="Sou uma PME" body="Descubra soluções criadas à medida para Pequenas e Médias Empresas moçambicanas" cta="Aceder ao PME-HUB" color="var(--c-green)" colorHex="#11bf74" to="https://dbapmehub.co.mz/" />
           </div>
         </div>
       </section>
