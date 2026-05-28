@@ -149,10 +149,10 @@ export const TEAM: TeamMember[] = [
   },
   { name: 'Arlindo Gordhandas', role: '', photo: '/Team/arlindo-gordhandas.png', bio: '', linkedin: 'https://www.linkedin.com/in/arlindo-gordhandas-a50341a1/' },
   { name: 'Fausto Massunga',    role: '', photo: '/Team/fausto-massunga.png',    bio: '', linkedin: 'https://www.linkedin.com/in/fausto-massunga-4376aa167/' },
-  { name: 'Marlo Boaventura',   role: '', photo: '/Team/marlo-boaventura.png',   bio: '' },
+  { name: 'Marlo Boaventura',   role: '', photo: '/Team/marlo-boaventura.png',   bio: '', linkedin: 'https://www.linkedin.com/in/marlo-machavela-2103401a/' },
   { name: 'Victor Matavel',     role: '', photo: '',                             bio: '' },
   { name: 'Fernando Muacha',    role: '', photo: '',                             bio: '' },
-  { name: 'Eugénia Pião',       role: '', photo: '',                             bio: '' },
+  { name: 'Eugénia Pião',       role: '', photo: '',                             bio: '', linkedin: 'https://www.linkedin.com/in/eugenia-piao/' },
 ];
 
 export interface EcosystemItem {
