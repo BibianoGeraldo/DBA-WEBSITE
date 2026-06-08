@@ -19,7 +19,7 @@ function ServiceCarouselCard({ s, active, onMouseEnter, onMouseLeave }: { s: Ser
     <div data-svc-card onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}
       style={{ background: bg, borderRadius: 18, padding: '26px 24px 22px', width: 240, flex: '0 0 240px', scrollSnapAlign: 'start', display: 'flex', flexDirection: 'column', minHeight: 340, transition: `background ${d} ${T}, transform ${d} ${T}, box-shadow ${d} ${T}`, boxShadow: active ? '0 20px 36px -14px rgba(1,101,221,.42)' : 'none', transform: active ? 'translateY(-5px)' : 'none' }}>
       <h3 style={{ color: titleColor, fontSize: 19, fontWeight: 500, letterSpacing: '-0.015em', lineHeight: 1.18, marginBottom: 14, transition: `color ${d} ${T}` }}>
-        {s.title.replace(', Reporting & Outsourcing', ' & Reporting').replace(' & Assessoria Financeira', '')}
+        {s.title.replace(', Reporting & Outsourcing', ' & Reporting').replace('Avaliação de Empresas & Assessoria Financeira', 'Financial Advisory')}
       </h3>
       <p style={{ color: bodyColor, fontSize: 13.5, lineHeight: 1.55, flex: 1, transition: `color ${d} ${T}` }}>{s.body}</p>
       <button className="svc-pill" onClick={() => router.push('/contact')}
@@ -69,7 +69,7 @@ export function ServicesCarousel({ services }: { services: Service[] }) {
       <div style={{ marginBottom: 40 }}>
         <h2 data-reveal style={{ fontSize: 'clamp(28px, 3vw, 44px)', fontWeight: 600, marginBottom: 20, letterSpacing: '-0.025em' }}>Serviços</h2>
         <p data-reveal data-delay="120" style={{ fontSize: 16, color: 'var(--c-mute)', maxWidth: 560, lineHeight: 1.55 }}>
-          Oferecemos um conjunto completo de serviços de consultoria para atender às necessidades específicas do seu negócio.
+          Apoiamos empresas, investidores e empreendedores em Moçambique com soluções integradas de fiscalidade, auditoria, contabilidade, advisory, capital humano, tecnologia e ESG — desde a estruturação inicial até à gestão, crescimento e conformidade contínua.
         </p>
       </div>
       <div style={{ position: 'relative' }}>

@@ -2,7 +2,6 @@
 import { useRevealObserver } from '@/hooks/useRevealObserver';
 import { ContactBlock } from '@/components/sections/ContactBlock';
 import { Arrow } from '@/components/ui/Arrow';
-import { CONTACT_DIRECTS } from '@/lib/data';
 
 const MAP_URL = 'https://www.google.com/maps/search/?api=1&query=Rua%20dos%20Desportistas%20833%20JAT%205-1%209%20Andar%20Maputo%20Mocambique';
 
@@ -11,37 +10,36 @@ export default function ContactPage() {
 
   return (
     <main className="page-enter contact-page">
+
       <section className="contact-hero">
         <div className="container">
-          <h1 data-reveal className="contact-hero__title">
-            Fale-nos da sua situação<br />em Moçambique.
-          </h1>
+          <h1 data-reveal className="contact-hero__title">Contactos</h1>
           <p data-reveal data-delay="120" className="contact-hero__lede">
-            Seja para entrar no mercado, resolver um problema de compliance ou estruturar uma
-            transacção um Partner sénior responde em 24 horas úteis.
-          </p>
-          <p data-reveal data-delay="220" className="contact-hero__note">
-            Prefere uma conversa directa? Marque uma chamada de 30 minutos no horário que lhe der jeito.
-            Respondemos a cada pedido pessoalmente. Sem respostas automáticas.
+            Fale connosco através do nosso contacto principal. A nossa equipa encaminhará o seu pedido para o Partner ou área responsável.
           </p>
         </div>
+        <div className="contact-hero__divider" />
       </section>
 
       <section className="contact-directs">
         <div className="container">
-          <h2 data-reveal className="contact-directs__title">Contactos directos por área</h2>
           <div data-stagger className="contact-directs__row">
-            {CONTACT_DIRECTS.map(d => (
-              <div key={d.area} className="contact-direct">
-                <div className="contact-direct__area">{d.area}</div>
-                <a href={`mailto:${d.email}`} className="contact-direct__pill">
-                  <span>{d.email}</span>
-                  <span className="contact-direct__arrow">
-                    <Arrow size={12} />
-                  </span>
-                </a>
-              </div>
-            ))}
+            <div className="contact-direct">
+              <div className="contact-direct__label">Email</div>
+              <a href="mailto:info@dba.co.mz" className="contact-direct__value">info@dba.co.mz</a>
+            </div>
+            <div className="contact-direct__sep" />
+            <div className="contact-direct">
+              <div className="contact-direct__label">Telefone / WhatsApp</div>
+              <a href="tel:+258852222016" className="contact-direct__value">+258 85 222 2016</a>
+            </div>
+            <div className="contact-direct__sep" />
+            <div className="contact-direct contact-direct--cta">
+              <a href="#contact-form" className="contact-direct__btn">
+                <span>Falar connosco</span>
+                <span className="contact-direct__btn-arrow"><Arrow size={13} /></span>
+              </a>
+            </div>
           </div>
         </div>
       </section>
@@ -69,7 +67,10 @@ export default function ContactPage() {
         </div>
       </section>
 
-      <ContactBlock />
+      <div id="contact-form">
+        <ContactBlock />
+      </div>
+
     </main>
   );
 }

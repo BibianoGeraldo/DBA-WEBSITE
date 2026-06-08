@@ -7,12 +7,14 @@ import { Arrow, ChevronLeft, ChevronRight } from '@/components/ui/Arrow';
 import { SERVICES, type Service } from '@/lib/data';
 
 const SERVICE_DETAIL_IMGS: Record<string, string> = {
-  fiscal:     'https://picsum.photos/seed/svc-fiscal/680/680',
-  accounting: 'https://picsum.photos/seed/svc-accounting/680/680',
-  valuation:  'https://picsum.photos/seed/svc-valuation/680/680',
-  hr:         'https://picsum.photos/seed/svc-hr/680/680',
-  academy:    'https://picsum.photos/seed/svc-academy/680/680',
-  tech:       'https://picsum.photos/seed/svc-tech/680/680',
+  fiscal:     '/fiscalidade.jpg',
+  audit:      '/audit.jpg',
+  accounting: '/contabilidade.jpg',
+  valuation:  '/avaliacao.jpg',
+  hr:         '/RH.jpg',
+  tech:       '/tecnologia.jpg',
+  esg:        '/ESG.jpg',
+  academy:    '/Academia.jpg',
 };
 
 function OtherServiceCard({ s, onClick }: { s: Service; onClick: () => void }) {
@@ -42,7 +44,7 @@ function OtherServiceCard({ s, onClick }: { s: Service; onClick: () => void }) {
           </svg>
         </span>
       </div>
-      <div style={{ flex: 1, minHeight: 200, overflow: 'hidden', borderTopLeftRadius: 28, borderTopRightRadius: 28, backgroundImage: `url(https://picsum.photos/seed/svc-${s.id}-thumb/400/300)`, backgroundSize: 'cover', backgroundPosition: 'center' }} />
+      <div style={{ flex: 1, minHeight: 200, overflow: 'hidden', borderTopLeftRadius: 28, borderTopRightRadius: 28, backgroundImage: `url(${SERVICE_DETAIL_IMGS[s.id] ?? '/servicos1.jpg'})`, backgroundSize: 'cover', backgroundPosition: 'center' }} />
     </div>
   );
 }
@@ -106,7 +108,9 @@ export default function ServiceDetailPage() {
       <section className="svc-hero">
         <div className="container" style={{ textAlign: 'center' }}>
           <h1 data-reveal style={{ fontSize: 'clamp(28px, 3vw, 44px)', fontWeight: 500, marginBottom: 24 }}>{s.title}</h1>
-          <p data-reveal data-delay="100" style={{ fontSize: 15, color: 'var(--c-mute)', lineHeight: 1.65, maxWidth: 720, marginInline: 'auto' }}>{s.body}</p>
+          {s.detail.split('\n\n').map((para, i) => (
+            <p key={i} data-reveal data-delay={i === 0 ? '100' : '160'} style={{ fontSize: 15, color: 'var(--c-mute)', lineHeight: 1.65, maxWidth: 720, marginInline: 'auto', marginTop: i > 0 ? 16 : 0 }}>{para}</p>
+          ))}
         </div>
         <div className="svc-hero__divider" />
       </section>

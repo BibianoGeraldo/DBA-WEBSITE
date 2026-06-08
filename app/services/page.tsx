@@ -7,15 +7,17 @@ import { Icon } from '@/components/ui/Icon';
 import { Arrow } from '@/components/ui/Arrow';
 import { SERVICES, type Service } from '@/lib/data';
 
-const SERVICES_HERO_IMG = 'https://picsum.photos/seed/dba-services/2400/800';
+const SERVICES_HERO_IMG = '/servicos1.jpg';
 
 const TINT_BY_ICON: Record<string, { bg: string; fg: string }> = {
   tax:     { bg: '#ffe7e2', fg: '#c8243d' },
+  check:   { bg: '#e6f0ff', fg: '#0165dd' },
   book:    { bg: '#dceaff', fg: '#0165dd' },
   chart:   { bg: '#e3f8ee', fg: '#0a8f55' },
   people:  { bg: '#f0e2f5', fg: '#7e22ce' },
-  academy: { bg: '#fff4cf', fg: '#cf8a18' },
   tech:    { bg: '#e3eff5', fg: '#1d6fa9' },
+  leaf:    { bg: '#e3f5ec', fg: '#0a8f55' },
+  academy: { bg: '#fff4cf', fg: '#cf8a18' },
 };
 
 function ServiceTile({ s, featured, onOpen, onMeet, onMouseEnter, onMouseLeave }: {
@@ -44,7 +46,7 @@ function ServiceTile({ s, featured, onOpen, onMeet, onMouseEnter, onMouseLeave }
       <p style={{ color: bodyClr, fontSize: 13.5, lineHeight: 1.55, flex: 1, transition: `color ${d}` }}>{s.body}</p>
       <button onClick={(e) => { e.stopPropagation(); onMeet(); }}
         style={{ marginTop: 22, alignSelf: 'flex-start', background: pillBg, color: pillFg, border: 0, borderRadius: 999, padding: '5px 5px 5px 16px', display: 'inline-flex', alignItems: 'center', gap: 10, fontSize: 13, fontWeight: 500, cursor: 'pointer', transition: `background-color ${d}, color ${d}` }}>
-        <span>Marcar Reunião</span>
+        <span>Explorar Serviço</span>
         <span style={{ width: 28, height: 28, borderRadius: '50%', background: arrowBg, color: arrowFg, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', transition: `background-color ${d}, color ${d}` }}>
           <Arrow size={12} />
         </span>
@@ -64,8 +66,7 @@ export default function ServicesPage() {
         <div className="container">
           <h1 data-reveal className="svc-hero__title">Serviços</h1>
           <p data-reveal data-delay="120" className="svc-hero__lede">
-            Soluções integradas de consultoria adaptadas à realidade do mercado moçambicano.
-            Da auditoria à assessoria estratégica, cada serviço é desenhado para gerar valor mensurável ao negócio do cliente.
+            Soluções integradas de consultoria adaptadas à realidade do mercado moçambicano. Da fiscalidade à auditoria, contabilidade, advisory, capital humano, tecnologia e ESG, cada serviço é desenhado para gerar valor mensurável, reforçar a conformidade e apoiar decisões empresariais com rigor.
           </p>
         </div>
         <div className="svc-hero__divider" />

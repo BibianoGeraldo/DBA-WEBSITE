@@ -33,6 +33,7 @@ export interface Service {
   title: string;
   short: string;
   body: string;
+  detail: string;
   areas: string[];
 }
 
@@ -42,15 +43,35 @@ export const SERVICES: Service[] = [
     icon: 'tax',
     title: 'Consultoria Fiscal',
     short: 'Conformidade, optimização e representatividade local.',
-    body: 'Ajudamos empresas a navegar pelo complexo sistema fiscal moçambicano com confiança e segurança. Oferecemos apoio completo desde a conformidade até à optimização fiscal, com assessoria contínua e representatividade local.',
+    body: 'Ajudamos empresas a navegar pelo sistema fiscal moçambicano com segurança, rigor e visão estratégica. Prestamos apoio em compliance, planeamento fiscal, controvérsia, due diligence, preços de transferência, reembolsos, incentivos e controlo cambial.',
+    detail: 'Apoiamos empresas, investidores e grupos económicos na gestão dos seus desafios fiscais em Moçambique, combinando conhecimento profundo da legislação local, experiência em firmas Big Four e uma abordagem prática orientada para decisões de negócio.\n\nPrestamos apoio em compliance, planeamento fiscal, controlo cambial, preços de transferência, due diligence, incentivos fiscais, reembolsos, contencioso e resolução de litígios fiscais.',
     areas: [
       'Planeamento e optimização fiscal',
-      'Controlo cambial e fiscalidade internacional',
+      'Fiscalidade internacional e controlo cambial',
       'Incentivos fiscais e isenções',
       'Due diligence fiscal',
       'Preços de transferência',
-      'Cumprimento fiscal e reporte',
+      'Compliance fiscal e reporting',
       'Contencioso e resolução de litígios fiscais',
+      'Reembolsos fiscais e regularização de créditos',
+    ],
+  },
+  {
+    id: 'audit',
+    icon: 'check',
+    title: 'Auditoria & Assurance',
+    short: 'Rigor técnico, independência e confiança na informação financeira.',
+    body: 'Prestamos serviços de auditoria, assurance e revisão de processos com foco em rigor técnico, independência, transparência e reforço da confiança na informação financeira.',
+    detail: 'Apoiamos empresas, instituições e organizações na avaliação das suas demonstrações financeiras, controlos internos, processos de governação e mecanismos de conformidade, contribuindo para decisões mais seguras e maior credibilidade perante accionistas, financiadores, reguladores e demais stakeholders.',
+    areas: [
+      'Auditoria externa às demonstrações financeiras',
+      'Auditoria interna e revisão de processos',
+      'Assurance e procedimentos acordados',
+      'Avaliação de controlos internos',
+      'Revisão de compliance e governação',
+      'Preparação para auditorias externas',
+      'Apoio a comités de auditoria e órgãos de governação',
+      'Revisão de reporting financeiro e processos contabilísticos',
     ],
   },
   {
@@ -58,14 +79,17 @@ export const SERVICES: Service[] = [
     icon: 'book',
     title: 'Contabilidade, Reporting & Outsourcing',
     short: 'Reporting fiável e conformidade estatutária.',
-    body: 'Gestão contabilística e financeira com rigor e eficiência. Cuidamos dos seus processos para que se foque no que realmente importa: fazer crescer o seu negócio.',
+    body: 'Apoiamos empresas na gestão contabilística, reporting financeiro, payroll, reconciliações, preparação de demonstrações financeiras e organização de processos internos, permitindo maior controlo, eficiência e conformidade.',
+    detail: 'Apoiamos empresas na gestão contabilística, financeira e administrativa com rigor, eficiência e foco na conformidade. Assumimos processos críticos de backoffice para que a gestão tenha informação fiável, controlo financeiro e mais tempo para se concentrar no crescimento do negócio.\n\nPrestamos apoio em escrituração, reconciliações, payroll, contas a pagar e a receber, reporting financeiro, contas anuais, preparação para auditoria, organização documental e suporte a sistemas ERP.',
     areas: [
-      'Escrituração e reconciliações',
+      'Escrituração contabilística e reconciliações',
       'Processamento salarial e gestão de activos',
       'Gestão de contas a pagar e a receber',
       'Preparação para auditorias externas',
-      'Relatórios financeiros e contas anuais',
+      'Reporting financeiro e contas anuais',
       'Apoio a sistemas ERP e backoffice',
+      'Payroll e obrigações declarativas',
+      'Organização documental e controlo interno',
     ],
   },
   {
@@ -73,14 +97,17 @@ export const SERVICES: Service[] = [
     icon: 'chart',
     title: 'Avaliação de Empresas & Assessoria Financeira',
     short: 'Decisões estratégicas com análises robustas.',
-    body: 'Apoiamos decisões estratégicas com análises financeiras robustas e estudos de viabilidade orientados para resultados.',
+    body: 'Apoiamos decisões estratégicas com análises financeiras robustas, estudos de viabilidade, avaliação de empresas, modelação financeira, apoio a financiamento, capital raising, project finance e suporte a transacções.',
+    detail: 'Apoiamos empresas, investidores e empreendedores na tomada de decisões financeiras estratégicas, através de análises robustas, modelos financeiros, estudos de viabilidade, avaliações independentes e apoio à estruturação de financiamento.\n\nCombinamos rigor técnico, conhecimento do mercado moçambicano e visão prática de negócio para apoiar decisões de investimento, crescimento, aquisição, venda, captação de capital e reestruturação financeira.',
     areas: [
-      'Apoio à obtenção de financiamento (bancário, grants e investidores)',
-      'Estudos de viabilidade económica',
-      'Modelação financeira e análises de sensibilidade',
       'Avaliação de empresas e activos',
+      'Estudos de viabilidade económica e financeira',
+      'Modelação financeira e análises de sensibilidade',
+      'Apoio à obtenção de financiamento bancário, grants e investidores',
+      'Capital raising e project finance',
       'Apoio a fusões, aquisições e desinvestimento',
-      'Capital raising & project finance',
+      'Business plans e investment memoranda',
+      'Análise financeira para decisões estratégicas',
     ],
   },
   {
@@ -88,12 +115,50 @@ export const SERVICES: Service[] = [
     icon: 'people',
     title: 'Recursos Humanos',
     short: 'Estruturar equipas, fortalecer liderança.',
-    body: 'Apoiamos empresas a estruturar equipas, fortalecer liderança e garantir processos sólidos de RH e payroll com foco em eficiência, conformidade e desempenho.',
+    body: 'Apoiamos empresas na estruturação de equipas, modelos de competências, avaliação de desempenho, desenvolvimento de talento, mudança organizacional, payroll e processos de RH alinhados com a estratégia do negócio.',
+    detail: 'Apoiamos empresas na estruturação da função de recursos humanos, desenvolvimento de talento, fortalecimento da liderança e criação de processos organizacionais alinhados com a estratégia do negócio.\n\nCombinamos experiência em gestão de pessoas, organização, cultura, desempenho e payroll para ajudar empresas a construir equipas mais fortes, produtivas e preparadas para crescer.',
     areas: [
-      'Estruturação de departamentos e organogramas',
-      'Recrutamento, formação e desenvolvimento de talento',
+      'Estruturação de departamentos de RH e organogramas',
       'Gestão estratégica de recursos humanos',
       'Modelos de competências e avaliação de desempenho',
+      'Recrutamento, formação e desenvolvimento de talento',
+      'Career development e planos de sucessão',
+      'Change management e cultura organizacional',
+      'Payroll e processos administrativos de RH',
+      'Assessment centers e diagnóstico organizacional',
+    ],
+  },
+  {
+    id: 'tech',
+    icon: 'tech',
+    title: 'Tecnologia & Automação',
+    short: 'ERP, RPA, cloud e transformação digital.',
+    body: 'Apoiamos empresas na transformação digital de processos financeiros, fiscais e operacionais, através de ERP, automação, RPA, soluções cloud, análise de dados e ferramentas de controlo de gestão.',
+    detail: 'Apoiamos empresas na transformação digital de processos financeiros, fiscais, contabilísticos e operacionais, com foco em eficiência, controlo, qualidade da informação e melhor tomada de decisão.\n\nCombinamos conhecimento de negócio, processos e tecnologia para implementar soluções práticas de ERP, automação, RPA, cloud, análise de dados e optimização de fluxos de trabalho.',
+    areas: [
+      'Implementação e optimização de sistemas ERP',
+      'Automação de processos financeiros, fiscais e operacionais',
+      'Migração, tratamento e análise de dados',
+      'Soluções cloud e suporte técnico',
+      'Consultoria tecnológica e redesenho de processos',
+      'Dashboards e ferramentas de controlo de gestão',
+      'RPA e integração entre sistemas',
+      'Apoio à digitalização de backoffice',
+    ],
+  },
+  {
+    id: 'esg',
+    icon: 'leaf',
+    title: 'ESG & Climate Advisory',
+    short: 'Investimento climático, ESG e desenvolvimento sustentável.',
+    body: 'Apoiamos empresas, investidores e organizações de desenvolvimento na estruturação, avaliação e documentação de projectos ESG, clima, energia, bioenergia, clean cooking e impacto socioeconómico.',
+    detail: 'Apoiamos empresas, investidores e organizações de desenvolvimento na estruturação, avaliação e documentação de projectos ESG, clima, energia, bioenergia, clean cooking e impacto socioeconómico.',
+    areas: [
+      'Programas de investimento ESG',
+      'Desenvolvimento de negócio alinhado com o clima',
+      'Bioenergia, Biocombustíveis & Clean Cooking',
+      'Avaliação socioeconómica',
+      'Preparação de documentos para DFIs',
     ],
   },
   {
@@ -101,25 +166,17 @@ export const SERVICES: Service[] = [
     icon: 'academy',
     title: 'Academia dBA',
     short: 'Cursos especializados para equipas de gestão.',
-    body: 'Cursos especializados em fiscalidade, contabilidade, liderança e outras áreas de negócio. Formação dedicada a equipas de finanças, compliance e gestão.',
+    body: 'Desenvolvemos cursos e formações especializadas em fiscalidade, contabilidade, finanças, liderança, compliance, gestão e outras áreas críticas para equipas empresariais e instituições.',
+    detail: 'Desenvolvemos formações técnicas e executivas para equipas de finanças, fiscalidade, contabilidade, compliance, liderança e gestão, com conteúdos adaptados à realidade moçambicana e às necessidades específicas de cada organização.\n\nA Academia dBA combina experiência prática, conhecimento técnico e abordagem aplicada, ajudando empresas a reforçar competências internas, melhorar processos e preparar as suas equipas para decisões mais rigorosas.',
     areas: [
-      'Formação técnica nas áreas de fiscalidade, contabilidade, liderança e compliance',
+      'Formação técnica em fiscalidade, contabilidade e compliance',
       'Programas à medida para empresas e equipas de gestão',
-      'Sessões presenciais ou online com especialistas seniores',
-    ],
-  },
-  {
-    id: 'tech',
-    icon: 'tech',
-    title: 'Tecnologia e Automação',
-    short: 'ERP, RPA, cloud transformação digital.',
-    body: 'Implementação de ERP, automação de processos (RPA), soluções cloud e transformação digital. Apoiamos a transformação digital dos processos de gestão com foco em eficiência e controlo.',
-    areas: [
-      'Migração e análise de dados',
-      'Automação de processos com RPA',
-      'Implementação e optimização de sistemas ERP',
-      'Soluções cloud e suporte técnico',
-      'Consultoria tecnológica e de processos',
+      'Sessões presenciais e online com especialistas séniores',
+      'Workshops executivos para liderança e tomada de decisão',
+      'Formação em reporting, controlo interno e gestão financeira',
+      'Capacitação em temas fiscais, laborais e regulatórios',
+      'Programas de desenvolvimento de competências para equipas',
+      'Academias internas para empresas e instituições',
     ],
   },
 ];
@@ -135,24 +192,58 @@ export interface TeamMember {
 export const TEAM: TeamMember[] = [
   {
     name: 'Dércio da Barca',
-    role: 'Managing Partner | Especialista em Fiscalidade e Estratégia',
+    role: 'Managing Partner | Fiscalidade & Estratégia',
     photo: '/Team/dercio-da-barca.png',
-    bio: 'Ex-Partner da Deloitte Moçambique, com 18 anos de experiência na liderança de equipas fiscais e de consultoria. Reconhecido pela abordagem estratégica, capacidade de execução e visão de longo prazo.',
+    bio: 'Ex-Country Tax & Legal Partner da Deloitte Moçambique, com mais de 17 anos de experiência em firmas Big Four. Assessora empresas nacionais e internacionais em fiscalidade, investimento, M&A, controvérsia fiscal, compliance, reporting e controlo cambial. Reconhecido pela visão estratégica, abordagem prática e capacidade de liderar equipas multidisciplinares em projectos complexos.',
     linkedin: 'https://www.linkedin.com/in/dercio-da-barca-40079629/',
   },
   {
     name: 'Ivan Veloso',
-    role: 'Managing Partner | Especialista em Fiscalidade e Estratégia',
+    role: 'Partner | Fiscalidade',
     photo: '/Team/ivan-veloso.png',
-    bio: 'Experiência sénior em planeamento fiscal, M&A e estruturação cross-border para grupos multinacionais com operações em Moçambique.',
+    bio: 'Partner de Fiscalidade com mais de 15 anos de experiência em consultoria fiscal e financeira, incluindo funções de liderança em firmas internacionais como RSM, Deloitte e EY. Especialista em planeamento fiscal, compliance, M&A, telecomunicações, Oil & Gas e controlo cambial. Apoia empresas na estruturação de soluções fiscais alinhadas com os seus objectivos de negócio.',
     linkedin: 'https://www.linkedin.com/in/ivan-veloso-93430850/',
   },
-  { name: 'Arlindo Gordhandas', role: '', photo: '/Team/arlindo-gordhandas.png', bio: '', linkedin: 'https://www.linkedin.com/in/arlindo-gordhandas-a50341a1/' },
-  { name: 'Fausto Massunga',    role: '', photo: '/Team/fausto-massunga.png',    bio: '', linkedin: 'https://www.linkedin.com/in/fausto-massunga-4376aa167/' },
-  { name: 'Marlo Boaventura',   role: '', photo: '/Team/marlo-boaventura.png',   bio: '', linkedin: 'https://www.linkedin.com/in/marlo-machavela-2103401a/' },
-  { name: 'Victor Matavel',     role: '', photo: '',                             bio: '' },
-  { name: 'Fernando Muacha',    role: '', photo: '',                             bio: '' },
-  { name: 'Eugénia Pião',       role: '', photo: '',                             bio: '', linkedin: 'https://www.linkedin.com/in/eugenia-piao/' },
+  {
+    name: 'Arlindo Gordhandás',
+    role: 'Tax Director | Fiscalidade & Compliance',
+    photo: '/Team/arlindo-gordhandas.png',
+    bio: 'Tax Director com mais de 15 anos de experiência em auditoria, fiscalidade e contabilidade em Moçambique. Tem forte conhecimento do sistema fiscal moçambicano, IFRS e matérias de compliance, planeamento fiscal, investimento estrangeiro, segurança social e due diligence. Actua junto de clientes corporativos na resolução de matérias fiscais e contabilísticas complexas.',
+    linkedin: 'https://www.linkedin.com/in/arlindo-gordhandas-a50341a1/',
+  },
+  {
+    name: 'Fausto Massunga',
+    role: 'Partner | Accounting & Outsourcing',
+    photo: '/Team/fausto-massunga.png',
+    bio: 'Certified Accountant com mais de 16 anos de experiência em contabilidade, fiscalidade, consultoria e financial advisory. Tem experiência em Deloitte & Touche, Area-Chave e projectos internacionais da Deloitte Consulting. Especialista em IAS/IFRS, reporting financeiro, outsourcing contabilístico e apoio à estruturação da função financeira das empresas.',
+    linkedin: 'https://www.linkedin.com/in/fausto-massunga-4376aa167/',
+  },
+  {
+    name: 'Marlo Boaventura',
+    role: 'Partner | Financial Advisory',
+    photo: '/Team/marlo-boaventura.png',
+    bio: 'Profissional de investimento com 18 anos de experiência em corporate banking, investment banking, private equity e venture capital. Tem experiência em financial modelling, valuations, project finance, capital raising e apoio a transacções. Trabalhou com empresas nacionais e internacionais em sectores como agricultura, FMCG, serviços financeiros e investimento.',
+    linkedin: 'https://www.linkedin.com/in/marlo-machavela-2103401a/',
+  },
+  {
+    name: 'Eugénia Pião',
+    role: 'Partner | Human Capital',
+    photo: '',
+    bio: 'Especialista em gestão de pessoas e desenvolvimento organizacional, com mais de 22 anos de experiência, incluindo 12 anos em Moçambique. Foi Strategic Advisor na EY e Head of People Solutions na RSM. Apoia empresas na estruturação de soluções de recursos humanos, desenvolvimento de talento, cultura, performance e transformação organizacional.',
+    linkedin: 'https://www.linkedin.com/in/eugenia-piao/',
+  },
+  {
+    name: 'Victor Matavel',
+    role: 'ESG & Climate Advisory',
+    photo: '',
+    bio: 'Economista com 12 anos de experiência profissional, incluindo funções em organizações multinacionais como GE e Baker Hughes. Actua em projectos de energia, bioenergia, clean cooking, ESG, desenvolvimento de mercado e investimento climático. Tem trabalhado com governos, DFIs, doadores e sector privado em iniciativas de impacto e transição energética.',
+  },
+  {
+    name: 'Fernando Muacha',
+    role: 'Audit & Assurance',
+    photo: '',
+    bio: 'Auditor certificado pela OCAM, com mais de 18 anos de experiência em auditoria externa, análise financeira, controlo interno, governação e conformidade. Trabalhou na Deloitte Moçambique entre 2009 e 2024, exercendo funções progressivas de liderança em auditoria. Tem experiência em sectores como imobiliário, construção, agricultura, indústria, energia, telecomunicações, sector público e entidades reguladas.',
+  },
 ];
 
 export interface EcosystemItem {
@@ -163,15 +254,14 @@ export interface EcosystemItem {
 }
 
 export const ECOSYSTEM_ITEMS: EcosystemItem[] = [
-  { label: 'Consultoria Fiscal', icon: 'tax',      color: '#0165dd', href: 'https://dba.co.mz/fiscal' },
-  { label: 'Contabilidade',      icon: 'book',     color: '#11bf74', href: 'https://dba.co.mz/contabilidade' },
-  { label: 'Avaliação',          icon: 'chart',    color: '#7e22ce', href: 'https://dba.co.mz/avaliacao' },
-  { label: 'Recursos Humanos',   icon: 'people',   color: '#cf5a18', href: 'https://dba.co.mz/rh' },
-  { label: 'Academia dBA',       icon: 'academy',  color: '#c8243d', href: 'https://academia.dba.co.mz' },
-  { label: 'Tecnologia',         icon: 'tech',     color: '#00283c', href: 'https://dba.co.mz/tecnologia' },
-  { label: 'ESG & Climate',      icon: 'leaf',     color: '#0a8f55', href: 'https://esg.dba.co.mz' },
-  { label: 'Investment Support', icon: 'compass',  color: '#0a6ea8', href: 'https://investment.dba.co.mz' },
-  { label: 'Indústrias',         icon: 'building', color: '#cf8a18', href: 'https://dba.co.mz/industrias' },
+  { label: 'Consultoria Fiscal',     icon: 'tax',     color: '#0165dd', href: '/services/fiscal' },
+  { label: 'Auditoria & Assurance',  icon: 'check',   color: '#0a6ea8', href: '/services/audit' },
+  { label: 'Contabilidade',          icon: 'book',    color: '#11bf74', href: '/services/accounting' },
+  { label: 'Avaliação Financeira',   icon: 'chart',   color: '#7e22ce', href: '/services/valuation' },
+  { label: 'Recursos Humanos',       icon: 'people',  color: '#cf5a18', href: '/services/hr' },
+  { label: 'Tecnologia & Automação', icon: 'tech',    color: '#00283c', href: '/services/tech' },
+  { label: 'ESG & Climate',          icon: 'leaf',    color: '#0a8f55', href: '/services/esg' },
+  { label: 'Academia dBA',           icon: 'academy', color: '#c8243d', href: '/services/academy' },
 ];
 
 export interface Industry {
@@ -275,10 +365,10 @@ export const INDUSTRIES_RIGHT: Industry[] = [
 ];
 
 export const ESG_PILLS = [
-  'Energy Access & Renewables',
-  'Bioenergy & Biofuels',
-  'Climate & ESG Programmes',
-  'Development Finance',
+  'Acesso à Energia & Renováveis',
+  'Bioenergia & Biocombustíveis',
+  'Programas ESG & Clima',
+  'Financiamento para o Desenvolvimento',
 ];
 
 export const ESG_PROGRAMS = [
@@ -290,18 +380,14 @@ export const ESG_PROGRAMS = [
 ];
 
 export const CONTACT_DIRECTS = [
-  { area: 'Contabilidade & Outsourcing', email: 'outsourcing@dba.co.mz' },
-  { area: 'Fiscalidade',                 email: 'fiscal@dba.co.mz' },
-  { area: 'Geral',                       email: 'info@dba.co.mz' },
-  { area: 'PME-HUB',                     email: 'pmehub@dba.co.mz' },
-  { area: 'Recrutamento',                email: 'recrutamento@dba.co.mz' },
+  { area: 'Geral', email: 'info@dba.co.mz' },
 ];
 
 export const VALUES = [
-  { t: 'Excelência',        d: 'Entregamos com qualidade, foco no detalhe e melhoria contínua.',     i: 'spark',  dark: false },
-  { t: 'Transparência',     d: 'Standards internacionais e disciplina técnica em cada entrega.',      i: 'spark',  dark: true  },
-  { t: 'Rigor',             d: 'Precisão técnica e zero tolerância ao erro em cada análise e entrega.', i: 'check',  dark: true  },
-  { t: 'Agilidade',         d: 'Resposta rápida, pragmática e com ownership.',                       i: 'bolt',   dark: false },
-  { t: 'Confidencialidade', d: 'Protecção total da informação e do negócio do cliente.',              i: 'shield', dark: false },
-  { t: 'Impacto',           d: 'Construimos soluções que geram valor e sustentabilidade.',            i: 'heart',  dark: true  },
+  { t: 'Excelência',        d: 'Entregamos com qualidade, atenção ao detalhe e melhoria contínua.',                              i: 'spark',  dark: false },
+  { t: 'Transparência',     d: 'Mantemos comunicação clara, disciplina técnica e responsabilidade em cada entrega.',              i: 'spark',  dark: true  },
+  { t: 'Rigor',             d: 'Aplicamos precisão técnica, pensamento crítico e controlo de qualidade em cada análise.',         i: 'check',  dark: true  },
+  { t: 'Agilidade',         d: 'Respondemos com rapidez, pragmatismo e ownership.',                                               i: 'bolt',   dark: false },
+  { t: 'Confidencialidade', d: 'Protegemos a informação, os dados e os interesses estratégicos dos nossos clientes.',             i: 'shield', dark: false },
+  { t: 'Impacto',           d: 'Construímos soluções que geram valor, confiança e sustentabilidade.',                             i: 'heart',  dark: true  },
 ];

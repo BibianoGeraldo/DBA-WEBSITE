@@ -9,10 +9,10 @@ import { WhyCard } from '@/components/pages/home/WhyCard';
 import { LeadershipCarousel } from '@/components/pages/home/LeadershipCarousel';
 import { SERVICES } from '@/lib/data';
 
-const HOME_HERO_IMG = 'https://picsum.photos/seed/dba-handshake/2400/560';
+const HOME_HERO_IMG = '/home1.jpg';
 const QUEM_SOMOS_IMGS = {
-  bulb:     'https://picsum.photos/seed/dba-office/600/600',
-  building: 'https://picsum.photos/seed/dba-team/600/600',
+  bulb:     '/home2.jpg',
+  building: '/home3.jpg',
 };
 
 function shade(hex: string, pct: number): string {
@@ -77,10 +77,10 @@ export default function HomePage() {
       <section style={{ position: 'relative' }}>
         <div className="container" style={{ paddingTop: 48, paddingBottom: 40, textAlign: 'center' }}>
           <h1 data-reveal style={{ marginBottom: 32, maxWidth: 1180, marginLeft: 'auto', marginRight: 'auto', fontSize: 'clamp(30px, 3.6vw, 48px)', fontWeight: 500, letterSpacing: '-0.025em', lineHeight: 1.1 }}>
-            Consultoria com legado de Big 4.<br/>Excelência local, padrões internacionais.
+            Consultoria com liderança sénior formada em firmas Big Four.<br/>Excelência local, padrões internacionais.
           </h1>
           <p data-reveal data-delay="120" className="lede" style={{ margin: '0 auto', maxWidth: 720, fontSize: 'clamp(17px, 1.4vw, 21px)', color: 'var(--c-text)', lineHeight: 1.4 }}>
-            Auditoria, fiscal, advisory e capital humano — um parceiro para cada etapa do seu negócio.
+            Auditoria, Fiscalidade, Advisory, Capital Humano, Tecnologia, Outsourcing – Um parceiro para cada etapa do seu negócio — soluções integradas para cada etapa do crescimento da sua empresa.
           </p>
           <p data-reveal data-delay="220" style={{ margin: '28px auto 0', color: 'var(--c-mute)', fontSize: 14 }}>
             Mais de 100 projectos entregues com sucesso em diferentes sectores da economia.
@@ -107,7 +107,7 @@ export default function HomePage() {
           <div data-reveal>
             <h2 style={{ fontSize: 'clamp(26px, 2.8vw, 40px)', fontWeight: 500, marginBottom: 28 }}>Quem somos?</h2>
             <p style={{ fontSize: 16, color: 'var(--c-mute)', lineHeight: 1.65, maxWidth: 520, marginBottom: 40 }}>
-              Fundada em 2023 por sócios com mais de 36 anos de experiência em Big Four, combinamos conhecimento local com padrões internacionais para oferecer serviços de excelência.
+              A dBA reúne uma liderança sénior com trajecto em firmas Big Four e redes internacionais de auditoria e consultoria, combinando conhecimento profundo do mercado moçambicano com padrões internacionais de rigor, proximidade e excelência.
             </p>
             <button ref={wipeAbout.ref} onClick={() => router.push('/about')} className="btn-wipe"
               onMouseEnter={wipeAbout.onMouseEnter} onMouseLeave={wipeAbout.onMouseLeave}
@@ -134,14 +134,14 @@ export default function HomePage() {
       <section className="section">
         <div className="container">
           <div data-reveal="zoom" className="why-banner">
-            <div className="img-hero-frame" style={{ position: 'absolute', inset: 0, backgroundImage: 'url(https://picsum.photos/seed/dba-why/2400/560)', backgroundSize: 'cover', backgroundPosition: 'center' }} />
+            <div className="img-hero-frame" style={{ position: 'absolute', inset: 0, backgroundImage: 'url(/home4.jpg)', backgroundSize: 'cover', backgroundPosition: 'center' }} />
           </div>
-          <h2 data-reveal style={{ textAlign: 'center', fontSize: 'clamp(24px, 2.6vw, 36px)', fontWeight: 500, marginBottom: 48 }}>Porquê Trabalhar Connosco?</h2>
+          <h2 data-reveal style={{ textAlign: 'center', fontSize: 'clamp(24px, 2.6vw, 36px)', fontWeight: 500, marginBottom: 48 }}>Porquê Escolher a dBA</h2>
           <div data-stagger className="why-grid">
-            <WhyCard mesh="triangle" color="#1d6fa9" big="36+" label="Anos de Experiência" body="Nossa equipa possui mais de 36 anos de experiência acumulada em firmas Big Four." />
-            <WhyCard mesh="sphere"   color="#0a0a0a" big="Moz"  label="Conhecimento Local"  body="Conhecimento profundo do contexto legal e fiscal moçambicano." />
-            <WhyCard mesh="diamond"  color="#c8243d" big="Team" label="Equipa Sénior"       body="Equipa sénior envolvida diretamente em todos os projetos do início ao fim." />
-            <WhyCard mesh="mobius"   color="#0a8f55" big="Bounds" label="Relações de Confiança" body="Construímos relações de longo prazo baseadas em confiança e entrega de valor." />
+            <WhyCard mesh="triangle" color="#1d6fa9" big="40+" label="Anos de experiência acumulada" body="A nossa liderança reúne mais de 40 anos de experiência acumulada em firmas Big Four e redes internacionais de auditoria e consultoria." />
+            <WhyCard mesh="sphere"   color="#0a0a0a" big="Moz"    label="Conhecimento Local"          body="Conhecemos o contexto fiscal, legal, contabilístico e empresarial moçambicano — e traduzimos essa realidade em soluções práticas." />
+            <WhyCard mesh="diamond"  color="#c8243d" big="Senior" label="Liderança Sénior"            body="Os nossos Partners e Directores estão directamente envolvidos nos projectos, assegurando rigor técnico, proximidade e responsabilidade." />
+            <WhyCard mesh="mobius"   color="#0a8f55" big="Trust"  label="Relações de Confiança"       body="Construímos relações de longo prazo assentes em confiança, transparência e entrega consistente de valor." />
           </div>
         </div>
       </section>
@@ -151,7 +151,7 @@ export default function HomePage() {
           <div data-reveal style={{ textAlign: 'center', marginBottom: 56 }}>
             <h2 style={{ fontSize: 'clamp(26px, 2.8vw, 40px)', fontWeight: 500, marginBottom: 22 }}>Nossa equipa de liderança</h2>
             <p style={{ fontSize: 17, color: 'var(--c-mute)', lineHeight: 1.55, maxWidth: 720, marginInline: 'auto' }}>
-              Conheça os especialistas por trás da dBA, com vasta experiência no mercado e compromisso com a excelência.
+              Conheça os profissionais que lideram a dBA – uma equipa sénior com trajecto em firmas Big Four, redes internacionais de auditoria e consultoria, multinacionais e projectos estratégicos em Moçambique.
             </p>
           </div>
           <LeadershipCarousel />
@@ -169,14 +169,14 @@ export default function HomePage() {
           <div data-reveal style={{ textAlign: 'center', marginBottom: 56 }}>
             <h2 style={{ fontSize: 'clamp(28px, 3vw, 44px)', fontWeight: 600, letterSpacing: '-0.025em', marginBottom: 24 }}>Indústrias</h2>
             <p style={{ fontSize: 16, color: 'var(--c-mute)', lineHeight: 1.6, maxWidth: 1000, marginInline: 'auto' }}>
-              Apoiamos empresas locais e multinacionais em sectores estratégicos da economia moçambicana.
+              Apoiamos empresas locais, multinacionais, investidores e instituições em sectores estratégicos da economia moçambicana — incluindo energia, serviços financeiros, telecomunicações, grande consumo, sector público, logística, agricultura, imobiliário e construção.
             </p>
           </div>
           <div data-stagger className="ind-pills-grid">
-            <IndustryPill color="#0165dd" label="Energia"          href="/industries#energia" />
-            <IndustryPill color="#11bf74" label="Telecomunicações" href="/industries#telecomunicacoes" />
-            <IndustryPill color="#0a0a0a" label="Grande Consumo"   href="/industries#grande-consumo" />
-            <IndustryPill color="#c8243d" label="Sector Público"   href="/industries#sector-publico" />
+            <IndustryPill color="#0165dd" label="Energia"               href="/industries#energia" />
+            <IndustryPill color="#11bf74" label="Telecomunicações"      href="/industries#telecomunicacoes" />
+            <IndustryPill color="#0a0a0a" label="Grande Consumo"        href="/industries#grande-consumo" />
+            <IndustryPill color="#c8243d" label="Ver todas indústrias"  href="/industries" />
           </div>
         </div>
       </section>

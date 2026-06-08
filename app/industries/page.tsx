@@ -5,7 +5,7 @@ import { useRevealObserver } from '@/hooks/useRevealObserver';
 import { ContactStrip } from '@/components/sections/ContactStrip';
 import { INDUSTRIES_LEFT, INDUSTRIES_RIGHT, ESG_PILLS, type Industry } from '@/lib/data';
 
-const INDUSTRY_HERO_IMG = 'https://picsum.photos/seed/dba-refinery/2400/900';
+const INDUSTRY_HERO_IMG = '/industrias1.jpg';
 
 function IndustryCard({ item }: { item: Industry }) {
   return (
@@ -49,7 +49,7 @@ function IndustriesPageInner() {
         <div className="container">
           <h1 data-reveal className="ind-hero__title">Indústrias</h1>
           <p data-reveal data-delay="120" className="ind-hero__lede">
-            Apoiamos empresas locais e multinacionais em sectores estratégicos da economia moçambicana, incluindo algumas líderes nos seus segmentos.
+            Apoiamos empresas locais, multinacionais, investidores e instituições em sectores estratégicos da economia moçambicana, combinando conhecimento sectorial, rigor técnico e experiência prática em ambientes regulados e de elevada complexidade.
           </p>
         </div>
         <div className="ind-hero__divider" />
