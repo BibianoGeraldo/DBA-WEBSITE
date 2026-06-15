@@ -3,6 +3,7 @@ import { useRouter } from 'next/navigation';
 import { useRevealObserver } from '@/hooks/useRevealObserver';
 import { ContactStrip } from '@/components/sections/ContactStrip';
 import { Arrow } from '@/components/ui/Arrow';
+import { useTranslation } from '@/hooks/useTranslation';
 
 const INVEST_HERO_IMG = '/INVESTMENT1.jpg';
 
@@ -39,67 +40,40 @@ function SupportBlock({ title, body }: { title: string; body: string }) {
 
 export default function InvestmentPage() {
   const router = useRouter();
+  const t = useTranslation();
   useRevealObserver();
 
   return (
     <main className="page-enter invest-page">
       <section className="invest-hero">
         <div className="container">
-          <h1 data-reveal className="invest-hero__title">
-            Invista em Moçambique com clareza, conformidade e velocidade.
-          </h1>
-          <p data-reveal data-delay="120" className="invest-hero__lede">
-            Acompanhamento liderado por Partners na entrada no mercado, estruturação de investimento, execução local e conformidade contínua — com a dBA como ponto único de contacto em Moçambique.
-          </p>
+          <h1 data-reveal className="invest-hero__title">{t.investment.heroTitle}</h1>
+          <p data-reveal data-delay="120" className="invest-hero__lede">{t.investment.heroLede}</p>
         </div>
         <div className="invest-hero__divider" />
       </section>
 
       <section className="invest-body">
         <div className="container">
-          <div data-reveal="zoom" className="invest-photo" style={{ backgroundImage: `url(${INVEST_HERO_IMG})` }} role="img" aria-label="Vista aérea de Maputo" />
+          <div data-reveal="zoom" className="invest-photo" style={{ backgroundImage: `url(${INVEST_HERO_IMG})` }} role="img" aria-label={t.investment.ariaImg} />
 
           <div data-reveal style={{ marginTop: 64, marginBottom: 48 }}>
-            <h2 style={{ fontSize: 'clamp(22px, 2.4vw, 34px)', fontWeight: 500, letterSpacing: '-0.02em', marginBottom: 36 }}>Como apoiamos investidores</h2>
+            <h2 style={{ fontSize: 'clamp(22px, 2.4vw, 34px)', fontWeight: 500, letterSpacing: '-0.02em', marginBottom: 36 }}>{t.investment.howTitle}</h2>
             <div data-stagger style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: 18 }}>
-              <SupportBlock
-                title="Entrada no mercado"
-                body="Estruturação inicial, constituição de sociedade, licenciamento, enquadramento fiscal e apoio à implementação local."
-              />
-              <SupportBlock
-                title="Estruturação fiscal e cambial"
-                body="Planeamento fiscal, controlo cambial, análise de incentivos, repatriamento de fundos e conformidade com obrigações locais."
-              />
-              <SupportBlock
-                title="Due diligence e suporte à transacção"
-                body="Apoio fiscal, financeiro, contabilístico e operacional em processos de aquisição, investimento, parceria ou desinvestimento."
-              />
-              <SupportBlock
-                title="Execução e conformidade contínua"
-                body="Apoio em contabilidade, reporting, payroll, compliance fiscal, governance, controlos internos e coordenação com stakeholders locais."
-              />
+              <SupportBlock title={t.investment.block1Title} body={t.investment.block1Body} />
+              <SupportBlock title={t.investment.block2Title} body={t.investment.block2Body} />
+              <SupportBlock title={t.investment.block3Title} body={t.investment.block3Body} />
+              <SupportBlock title={t.investment.block4Title} body={t.investment.block4Body} />
             </div>
           </div>
 
           <div data-stagger className="invest-ctas">
-            <InvestCTACard
-              variant="blue"
-              title="Receber oportunidades alinhadas com o seu perfil"
-              subtitle="Submeta os seus critérios de investimento para receber oportunidades, sectores e projectos alinhados com o seu mandato."
-              cta="Submeter critérios"
-              onClick={() => router.push('/contact')}
-            />
-            <InvestCTACard
-              variant="green"
-              title="Falar com um Partner dBA"
-              subtitle="Marque uma conversa de 30 minutos para discutir entrada no mercado, estruturação, riscos, compliance ou oportunidades em Moçambique."
-              cta="Marcar reunião"
-              onClick={() => router.push('/contact')}
-            />
+            <InvestCTACard variant="blue"  title={t.investment.cta1Title} subtitle={t.investment.cta1Sub} cta={t.investment.cta1Btn} onClick={() => router.push('/contact')} />
+            <InvestCTACard variant="green" title={t.investment.cta2Title} subtitle={t.investment.cta2Sub} cta={t.investment.cta2Btn} onClick={() => router.push('/contact')} />
           </div>
 
           <p data-reveal style={{ marginTop: 48, fontSize: 14.5, color: 'var(--c-mute)', lineHeight: 1.65, maxWidth: 820, textAlign: 'center', marginInline: 'auto' }}>
-            A dBA apoia investidores, multinacionais, grupos locais e instituições na navegação do ambiente fiscal, financeiro, regulatório e operacional moçambicano, combinando conhecimento local, liderança sénior e padrões internacionais.
+            {t.investment.bottomPara}
           </p>
         </div>
       </section>

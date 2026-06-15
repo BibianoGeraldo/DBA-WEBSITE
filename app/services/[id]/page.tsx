@@ -4,7 +4,8 @@ import { useParams, useRouter } from 'next/navigation';
 import { useRevealObserver } from '@/hooks/useRevealObserver';
 import { ContactStrip } from '@/components/sections/ContactStrip';
 import { Arrow, ChevronLeft, ChevronRight } from '@/components/ui/Arrow';
-import { SERVICES, type Service } from '@/lib/data';
+import { useTranslation } from '@/hooks/useTranslation';
+import type { TService } from '@/lib/translations';
 
 const SERVICE_DETAIL_IMGS: Record<string, string> = {
   fiscal:     '/fiscalidade.jpg',
@@ -17,7 +18,7 @@ const SERVICE_DETAIL_IMGS: Record<string, string> = {
   academy:    '/Academia.jpg',
 };
 
-function OtherServiceCard({ s, onClick }: { s: Service; onClick: () => void }) {
+function OtherServiceCard({ s, onClick }: { s: TService; onClick: () => void }) {
   const [hover, setHover] = useState(false);
   return (
     <div
@@ -37,7 +38,7 @@ function OtherServiceCard({ s, onClick }: { s: Service; onClick: () => void }) {
       }}
     >
       <div style={{ color: hover ? '#fff' : 'var(--c-ink)', padding: '22px 20px', fontSize: 14, fontWeight: 600, lineHeight: 1.25, letterSpacing: '-0.005em', minHeight: 88, display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 10, transition: 'color .35s ease', flex: '0 0 auto' }}>
-        <span>{s.title}</span>
+        <span>{s.shortTitle}</span>
         <span style={{ width: 26, height: 26, borderRadius: '50%', background: hover ? '#fff' : 'rgba(0,0,0,.08)', color: hover ? '#11bf74' : 'var(--c-ink)', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', flex: '0 0 26px', transition: 'background-color .35s ease, color .35s ease' }}>
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
             <line x1="5" y1="12" x2="19" y2="12"/><polyline points="13 6 19 12 13 18"/>
@@ -50,6 +51,7 @@ function OtherServiceCard({ s, onClick }: { s: Service; onClick: () => void }) {
 }
 
 export default function ServiceDetailPage() {
+  const t = useTranslation();
   const params = useParams();
   const router = useRouter();
   const id = params.id as string;
@@ -60,44 +62,44 @@ export default function ServiceDetailPage() {
   const [atEnd, setAtEnd] = useState(false);
 
   const updateScrollState = useCallback(() => {
-    const t = trackRef.current;
-    if (!t) return;
-    setAtStart(t.scrollLeft <= 4);
-    setAtEnd(t.scrollLeft + t.clientWidth >= t.scrollWidth - 4);
+    const el = trackRef.current;
+    if (!el) return;
+    setAtStart(el.scrollLeft <= 4);
+    setAtEnd(el.scrollLeft + el.clientWidth >= el.scrollWidth - 4);
   }, []);
 
   useEffect(() => {
-    const t = trackRef.current;
-    if (!t) return;
+    const el = trackRef.current;
+    if (!el) return;
     updateScrollState();
-    t.addEventListener('scroll', updateScrollState, { passive: true });
+    el.addEventListener('scroll', updateScrollState, { passive: true });
     window.addEventListener('resize', updateScrollState);
     return () => {
-      t.removeEventListener('scroll', updateScrollState);
+      el.removeEventListener('scroll', updateScrollState);
       window.removeEventListener('resize', updateScrollState);
     };
   }, [updateScrollState]);
 
   const scrollBy = (dir: number) => {
-    const t = trackRef.current;
-    if (!t) return;
-    const card = t.querySelector<HTMLElement>('[data-svc-other-card]');
+    const el = trackRef.current;
+    if (!el) return;
+    const card = el.querySelector<HTMLElement>('[data-svc-other-card]');
     const step = card ? card.offsetWidth + 16 : 256;
-    t.scrollBy({ left: dir * step, behavior: 'smooth' });
+    el.scrollBy({ left: dir * step, behavior: 'smooth' });
   };
 
-  const s = SERVICES.find(x => x.id === id);
+  const s = t.servicesData.find(x => x.id === id);
   if (!s) return (
     <main className="page-enter" style={{ paddingTop: 'calc(var(--header-h) + 80px)', textAlign: 'center', minHeight: '60vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
       <div>
-        <h1 style={{ fontSize: 'clamp(22px, 2.5vw, 32px)', fontWeight: 500, marginBottom: 16 }}>Serviço não encontrado</h1>
-        <p style={{ color: 'var(--c-mute)', marginBottom: 32 }}>O serviço que procura não existe ou foi removido.</p>
-        <a href="/services" className="btn btn--primary">Ver todos os serviços</a>
+        <h1 style={{ fontSize: 'clamp(22px, 2.5vw, 32px)', fontWeight: 500, marginBottom: 16 }}>{t.serviceDetail.notFound}</h1>
+        <p style={{ color: 'var(--c-mute)', marginBottom: 32 }}>{t.serviceDetail.notFoundBody}</p>
+        <a href="/services" className="btn btn--primary">{t.serviceDetail.viewAll}</a>
       </div>
     </main>
   );
 
-  const others = SERVICES.filter(x => x.id !== s.id);
+  const others = t.servicesData.filter(x => x.id !== s.id);
   const half = Math.ceil(s.areas.length / 2);
   const colA = s.areas.slice(0, half);
   const colB = s.areas.slice(half);
@@ -122,7 +124,7 @@ export default function ServiceDetailPage() {
           </div>
 
           <div data-reveal="right" className="svc-detail-content">
-            <h2 style={{ fontSize: 'clamp(22px, 2.2vw, 32px)', fontWeight: 500 }}>Áreas de actuação</h2>
+            <h2 style={{ fontSize: 'clamp(22px, 2.2vw, 32px)', fontWeight: 500 }}>{t.serviceDetail.areasTitle}</h2>
 
             <div className="svc-areas-grid">
               {[colA, colB].map((col, idx) => (
@@ -141,7 +143,7 @@ export default function ServiceDetailPage() {
 
             <button onClick={() => router.push('/contact')}
               style={{ alignSelf: 'flex-start', background: 'var(--c-bg-2)', border: 0, borderRadius: 999, padding: '6px 6px 6px 22px', display: 'inline-flex', alignItems: 'center', gap: 14, fontSize: 14, fontWeight: 500, color: 'var(--c-blue)', cursor: 'pointer' }}>
-              <span>Marcar Reunião</span>
+              <span>{t.serviceDetail.bookMeeting}</span>
               <span style={{ width: 32, height: 32, borderRadius: '50%', background: '#0165dd', color: '#fff', display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>
                 <Arrow size={13} />
               </span>
@@ -153,16 +155,18 @@ export default function ServiceDetailPage() {
       <section className="section">
         <div className="container">
           <h2 data-reveal style={{ textAlign: 'center', fontSize: 'clamp(24px, 2.8vw, 38px)', fontWeight: 500, marginBottom: 40, lineHeight: 1.2 }}>
-            Conheça mais dos nossos<br/>Serviços &amp; Produtos
+            {t.serviceDetail.moreTitle.split('\n').map((line, i) => (
+              <span key={i}>{line}{i === 0 && <br/>}</span>
+            ))}
           </h2>
           <div style={{ position: 'relative' }}>
             {!atStart && (
-              <button className="svc-arrow svc-arrow--left" aria-label="Anterior" onClick={() => scrollBy(-1)}>
+              <button className="svc-arrow svc-arrow--left" aria-label={t.common.previous} onClick={() => scrollBy(-1)}>
                 <ChevronLeft />
               </button>
             )}
             {!atEnd && (
-              <button className="svc-arrow svc-arrow--right" aria-label="Próximo" onClick={() => scrollBy(1)}>
+              <button className="svc-arrow svc-arrow--right" aria-label={t.common.next} onClick={() => scrollBy(1)}>
                 <ChevronRight />
               </button>
             )}

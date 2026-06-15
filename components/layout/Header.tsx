@@ -7,23 +7,26 @@ import { Logo } from '@/components/ui/Logo';
 import { Icon } from '@/components/ui/Icon';
 import { EcosystemLauncher } from './EcosystemLauncher';
 import { useScrolled } from '@/hooks/useScrolled';
-
-const NAV_LINKS = [
-  { href: '/',           label: 'Início' },
-  { href: '/about',      label: 'Quem somos' },
-  { href: '/industries', label: 'Indústrias' },
-  { href: '/services',   label: 'Serviços' },
-  { href: '/investment', label: 'Investment Support' },
-  { href: '/esg',        label: 'ESG & Climate' },
-  { href: '/contact',    label: 'Contactos' },
-];
+import { useLanguage } from '@/contexts/LanguageContext';
+import { useTranslation } from '@/hooks/useTranslation';
 
 export function Header() {
   const [open, setOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
-  const [lang, setLang] = useState<'PT' | 'EN'>('PT');
   const pathname = usePathname();
   const scrolled = useScrolled();
+  const { lang, setLang } = useLanguage();
+  const t = useTranslation();
+
+  const NAV_LINKS = [
+    { href: '/',           label: t.nav.home },
+    { href: '/about',      label: t.nav.about },
+    { href: '/industries', label: t.nav.industries },
+    { href: '/services',   label: t.nav.services },
+    { href: '/investment', label: t.nav.investment },
+    { href: '/esg',        label: t.nav.esg },
+    { href: '/contact',    label: t.nav.contact },
+  ];
 
   useEffect(() => { setMounted(true); }, []);
 

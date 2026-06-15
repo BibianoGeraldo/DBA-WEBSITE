@@ -4,6 +4,7 @@ import './globals.css';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { ScrollToTop } from '@/components/layout/ScrollToTop';
+import { LanguageProvider } from '@/contexts/LanguageContext';
 
 const albertSans = Albert_Sans({
   subsets: ['latin'],
@@ -27,12 +28,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="pt" className={albertSans.variable}>
       <body>
-        <ScrollToTop />
-        <Header />
-        <div className="page-content">
-          {children}
-          <Footer />
-        </div>
+        <LanguageProvider>
+          <ScrollToTop />
+          <Header />
+          <div className="page-content">
+            {children}
+            <Footer />
+          </div>
+        </LanguageProvider>
       </body>
     </html>
   );

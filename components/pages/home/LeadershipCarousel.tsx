@@ -4,11 +4,12 @@ import { createPortal } from 'react-dom';
 import Image from 'next/image';
 import { ChevronLeft, ChevronRight } from '@/components/ui/Arrow';
 import { Icon } from '@/components/ui/Icon';
-import { TEAM, SOCIAL_LINKS } from '@/lib/data';
+import { SOCIAL_LINKS } from '@/lib/data';
+import { useTranslation } from '@/hooks/useTranslation';
+import type { TMember } from '@/lib/translations';
 
-type Person = typeof TEAM[0];
-
-function TeamModal({ person, onClose }: { person: Person; onClose: () => void }) {
+function TeamModal({ person, onClose }: { person: TMember; onClose: () => void }) {
+  const t = useTranslation();
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose(); };
     document.addEventListener('keydown', onKey);
@@ -36,13 +37,13 @@ function TeamModal({ person, onClose }: { person: Person; onClose: () => void })
         <div style={{ padding: '28px 28px 24px', overflowY: 'auto', flex: 1 }}>
           {person.bio
             ? <p style={{ fontSize: 15, color: '#444', lineHeight: 1.7, margin: 0 }}>{person.bio}</p>
-            : <p style={{ fontSize: 14, color: '#999', fontStyle: 'italic' }}>Bio em breve.</p>}
+            : <p style={{ fontSize: 14, color: '#999', fontStyle: 'italic' }}>{t.common.bioSoon}</p>}
         </div>
         {person.linkedin && (
           <div style={{ padding: '16px 28px 24px', borderTop: '1px solid rgba(0,0,0,.07)' }}>
             <a href={person.linkedin} target="_blank" rel="noopener noreferrer" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, fontSize: 13.5, fontWeight: 500, color: '#0165dd', textDecoration: 'none' }}>
               <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d={SOCIAL_LINKS[0].path} /></svg>
-              Ver perfil no LinkedIn
+              {t.common.viewLinkedIn}
             </a>
           </div>
         )}
@@ -52,7 +53,8 @@ function TeamModal({ person, onClose }: { person: Person; onClose: () => void })
   );
 }
 
-function TeamCard({ person }: { person: Person }) {
+function TeamCard({ person }: { person: TMember }) {
+  const t = useTranslation();
   const [selected, setSelected] = useState(false);
 
   return (
@@ -75,7 +77,7 @@ function TeamCard({ person }: { person: Person }) {
               <p style={{ fontSize: 12, color: 'rgba(255,255,255,.88)', lineHeight: 1.6, margin: '12px 0 0', flex: 1 }}>
                 {person.bio.length > 220 ? person.bio.slice(0, person.bio.lastIndexOf(' ', 220)) : person.bio}
                 {person.bio.length > 220 && (
-                  <>… <span style={{ fontWeight: 700, color: '#fff', cursor: 'pointer' }}>Ver mais</span></>
+                  <>… <span style={{ fontWeight: 700, color: '#fff', cursor: 'pointer' }}>{t.common.viewMore}</span></>
                 )}
               </p>
             )}
@@ -96,41 +98,42 @@ function TeamCard({ person }: { person: Person }) {
 }
 
 export function LeadershipCarousel() {
+  const t = useTranslation();
   const trackRef = useRef<HTMLDivElement>(null);
   const [atStart, setAtStart] = useState(true);
   const [atEnd, setAtEnd] = useState(false);
 
   const updateScrollState = useCallback(() => {
-    const t = trackRef.current;
-    if (!t) return;
-    const padLeft = parseFloat(getComputedStyle(t).paddingLeft) || 0;
-    setAtStart(t.scrollLeft <= padLeft + 4);
-    setAtEnd(t.scrollLeft + t.clientWidth >= t.scrollWidth - 4);
+    const el = trackRef.current;
+    if (!el) return;
+    const padLeft = parseFloat(getComputedStyle(el).paddingLeft) || 0;
+    setAtStart(el.scrollLeft <= padLeft + 4);
+    setAtEnd(el.scrollLeft + el.clientWidth >= el.scrollWidth - 4);
   }, []);
 
   useEffect(() => {
-    const t = trackRef.current;
-    if (!t) return;
+    const el = trackRef.current;
+    if (!el) return;
     updateScrollState();
-    t.addEventListener('scroll', updateScrollState, { passive: true });
+    el.addEventListener('scroll', updateScrollState, { passive: true });
     window.addEventListener('resize', updateScrollState);
-    return () => { t.removeEventListener('scroll', updateScrollState); window.removeEventListener('resize', updateScrollState); };
+    return () => { el.removeEventListener('scroll', updateScrollState); window.removeEventListener('resize', updateScrollState); };
   }, [updateScrollState]);
 
   const scrollBy = (dir: number) => {
-    const t = trackRef.current;
-    if (!t) return;
-    const card = t.querySelector<HTMLElement>('[data-team-card]');
+    const el = trackRef.current;
+    if (!el) return;
+    const card = el.querySelector<HTMLElement>('[data-team-card]');
     const step = card ? card.offsetWidth + 16 : 256;
-    t.scrollBy({ left: dir * step, behavior: 'smooth' });
+    el.scrollBy({ left: dir * step, behavior: 'smooth' });
   };
 
   return (
     <div style={{ position: 'relative' }}>
-      {!atStart && <button className="svc-arrow svc-arrow--left" aria-label="Anterior" onClick={() => scrollBy(-1)}><ChevronLeft /></button>}
-      {!atEnd && <button className="svc-arrow svc-arrow--right" aria-label="Próximo" onClick={() => scrollBy(1)}><ChevronRight /></button>}
+      {!atStart && <button className="svc-arrow svc-arrow--left" aria-label={t.common.previous} onClick={() => scrollBy(-1)}><ChevronLeft /></button>}
+      {!atEnd && <button className="svc-arrow svc-arrow--right" aria-label={t.common.next} onClick={() => scrollBy(1)}><ChevronRight /></button>}
       <div ref={trackRef} className="about-team__track svc-carousel-track">
-        {TEAM.map(p => <TeamCard key={p.name} person={p} />)}
+        {t.teamData.map(p => <TeamCard key={p.name} person={p} />)}
       </div>
     </div>
   );

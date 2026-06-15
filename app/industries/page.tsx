@@ -3,11 +3,12 @@ import { useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { useRevealObserver } from '@/hooks/useRevealObserver';
 import { ContactStrip } from '@/components/sections/ContactStrip';
-import { INDUSTRIES_LEFT, INDUSTRIES_RIGHT, ESG_PILLS, type Industry } from '@/lib/data';
+import { useTranslation } from '@/hooks/useTranslation';
+import type { TIndustry } from '@/lib/translations';
 
 const INDUSTRY_HERO_IMG = '/industrias1.jpg';
 
-function IndustryCard({ item }: { item: Industry }) {
+function IndustryCard({ item }: { item: TIndustry }) {
   return (
     <article id={item.id} className="ind-card">
       <h3 className="ind-card__title">{item.title}</h3>
@@ -15,8 +16,8 @@ function IndustryCard({ item }: { item: Industry }) {
       {item.pillarsLabel && <p className="ind-card__p ind-card__p--label">{item.pillarsLabel}</p>}
       {item.pillars && (
         <ul className="ind-card__list">
-          {item.pillars.map(([t, d]) => (
-            <li key={t}><strong>{t}:</strong>{d}</li>
+          {item.pillars.map(([tv, d]) => (
+            <li key={tv}><strong>{tv}:</strong>{d}</li>
           ))}
         </ul>
       )}
@@ -26,6 +27,7 @@ function IndustryCard({ item }: { item: Industry }) {
 }
 
 function IndustriesPageInner() {
+  const t = useTranslation();
   const searchParams = useSearchParams();
   const to = searchParams.get('to');
   useRevealObserver();
@@ -47,17 +49,15 @@ function IndustriesPageInner() {
     <main className="page-enter ind-page">
       <section className="ind-hero">
         <div className="container">
-          <h1 data-reveal className="ind-hero__title">Indústrias</h1>
-          <p data-reveal data-delay="120" className="ind-hero__lede">
-            Apoiamos empresas locais, multinacionais, investidores e instituições em sectores estratégicos da economia moçambicana, combinando conhecimento sectorial, rigor técnico e experiência prática em ambientes regulados e de elevada complexidade.
-          </p>
+          <h1 data-reveal className="ind-hero__title">{t.industries.heroTitle}</h1>
+          <p data-reveal data-delay="120" className="ind-hero__lede">{t.industries.heroLede}</p>
         </div>
         <div className="ind-hero__divider" />
       </section>
 
       <section className="ind-image">
         <div className="container" data-reveal="zoom" data-delay="200">
-          <div className="ind-image__frame" style={{ backgroundImage: `url(${INDUSTRY_HERO_IMG})` }} role="img" aria-label="Instalação industrial" />
+          <div className="ind-image__frame" style={{ backgroundImage: `url(${INDUSTRY_HERO_IMG})` }} role="img" aria-label={t.industries.ariaImg} />
         </div>
       </section>
 
@@ -65,10 +65,10 @@ function IndustriesPageInner() {
         <div className="container">
           <div className="ind-grid">
             <div data-reveal="left" className="ind-col">
-              {INDUSTRIES_LEFT.map(i => <IndustryCard key={i.id} item={i} />)}
+              {t.industriesLeft.map(i => <IndustryCard key={i.id} item={i} />)}
             </div>
             <div data-reveal="right" className="ind-col">
-              {INDUSTRIES_RIGHT.map(i => <IndustryCard key={i.id} item={i} />)}
+              {t.industriesRight.map(i => <IndustryCard key={i.id} item={i} />)}
             </div>
           </div>
         </div>
@@ -77,7 +77,7 @@ function IndustriesPageInner() {
       <section className="ind-esg">
         <div className="container">
           <div data-stagger className="ind-esg__row">
-            {ESG_PILLS.map(label => <div key={label} className="ind-esg__pill">{label}</div>)}
+            {t.esgPills.map(label => <div key={label} className="ind-esg__pill">{label}</div>)}
           </div>
         </div>
       </section>

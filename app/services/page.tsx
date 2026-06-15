@@ -5,7 +5,8 @@ import { useRevealObserver } from '@/hooks/useRevealObserver';
 import { ContactBlock } from '@/components/sections/ContactBlock';
 import { Icon } from '@/components/ui/Icon';
 import { Arrow } from '@/components/ui/Arrow';
-import { SERVICES, type Service } from '@/lib/data';
+import { useTranslation } from '@/hooks/useTranslation';
+import type { TService } from '@/lib/translations';
 
 const SERVICES_HERO_IMG = '/servicos1.jpg';
 
@@ -21,10 +22,11 @@ const TINT_BY_ICON: Record<string, { bg: string; fg: string }> = {
 };
 
 function ServiceTile({ s, featured, onOpen, onMeet, onMouseEnter, onMouseLeave }: {
-  s: Service; featured: boolean;
+  s: TService; featured: boolean;
   onOpen: () => void; onMeet: () => void;
   onMouseEnter: () => void; onMouseLeave: () => void;
 }) {
+  const t = useTranslation();
   const tint     = TINT_BY_ICON[s.icon] || { bg: 'var(--c-blue-soft)', fg: 'var(--c-blue)' };
   const bg       = featured ? '#0165dd' : 'var(--c-bg-2)';
   const titleClr = featured ? '#fff' : 'var(--c-ink)';
@@ -46,7 +48,7 @@ function ServiceTile({ s, featured, onOpen, onMeet, onMouseEnter, onMouseLeave }
       <p style={{ color: bodyClr, fontSize: 13.5, lineHeight: 1.55, flex: 1, transition: `color ${d}` }}>{s.body}</p>
       <button onClick={(e) => { e.stopPropagation(); onMeet(); }}
         style={{ marginTop: 22, alignSelf: 'flex-start', background: pillBg, color: pillFg, border: 0, borderRadius: 999, padding: '5px 5px 5px 16px', display: 'inline-flex', alignItems: 'center', gap: 10, fontSize: 13, fontWeight: 500, cursor: 'pointer', transition: `background-color ${d}, color ${d}` }}>
-        <span>Explorar Serviço</span>
+        <span>{t.common.exploreService}</span>
         <span style={{ width: 28, height: 28, borderRadius: '50%', background: arrowBg, color: arrowFg, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', transition: `background-color ${d}, color ${d}` }}>
           <Arrow size={12} />
         </span>
@@ -56,6 +58,7 @@ function ServiceTile({ s, featured, onOpen, onMeet, onMouseEnter, onMouseLeave }
 }
 
 export default function ServicesPage() {
+  const t = useTranslation();
   const router = useRouter();
   const [hoverId, setHoverId] = useState<string | null>(null);
   useRevealObserver();
@@ -64,24 +67,22 @@ export default function ServicesPage() {
     <main className="page-enter svc-page">
       <section className="svc-hero">
         <div className="container">
-          <h1 data-reveal className="svc-hero__title">Serviços</h1>
-          <p data-reveal data-delay="120" className="svc-hero__lede">
-            Soluções integradas de consultoria adaptadas à realidade do mercado moçambicano. Da fiscalidade à auditoria, contabilidade, advisory, capital humano, tecnologia e ESG, cada serviço é desenhado para gerar valor mensurável, reforçar a conformidade e apoiar decisões empresariais com rigor.
-          </p>
+          <h1 data-reveal className="svc-hero__title">{t.services.heroTitle}</h1>
+          <p data-reveal data-delay="120" className="svc-hero__lede">{t.services.heroLede}</p>
         </div>
         <div className="svc-hero__divider" />
       </section>
 
       <section className="svc-image">
         <div className="container" data-reveal="zoom" data-delay="200">
-          <div className="svc-image__frame" style={{ backgroundImage: `url(${SERVICES_HERO_IMG})` }} role="img" aria-label="Consultoria empresarial" />
+          <div className="svc-image__frame" style={{ backgroundImage: `url(${SERVICES_HERO_IMG})` }} role="img" aria-label={t.services.ariaImg} />
         </div>
       </section>
 
       <section className="section svc-list">
         <div className="container">
           <div data-stagger className="svc-grid">
-            {SERVICES.map(s => (
+            {t.servicesData.map(s => (
               <ServiceTile key={s.id} s={s}
                 featured={s.id === hoverId}
                 onMouseEnter={() => setHoverId(s.id)}

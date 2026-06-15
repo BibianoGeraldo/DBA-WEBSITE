@@ -1,18 +1,21 @@
+'use client';
 import { LogoWordmark } from '@/components/ui/Logo';
+import { useTranslation } from '@/hooks/useTranslation';
 
 export function Footer() {
+  const t = useTranslation();
   return (
     <footer style={{ background: '#fff', borderTop: '4px solid #0165dd', padding: '56px 0 48px', textAlign: 'center' }}>
       <div className="container">
         <div style={{ display: 'inline-flex', flexDirection: 'column', alignItems: 'center', gap: 28 }}>
           <LogoWordmark height={64} />
           <div style={{ fontSize: 14, color: 'var(--c-mute)' }}>
-            dBA – {new Date().getFullYear()}. Todos direitos reservados.
+            dBA – {new Date().getFullYear()}. {t.footer.rights}
           </div>
           <div style={{ display: 'flex', gap: 20, fontSize: 13, flexWrap: 'wrap', justifyContent: 'center' }}>
-            <a href="#" className="footer-link">Política de Privacidade</a>
-            <a href="#" className="footer-link">Termos &amp; Condições</a>
-            <a href="#" className="footer-link">Cookies</a>
+            <a href="#" className="footer-link">{t.footer.privacy}</a>
+            <a href="#" className="footer-link">{t.footer.terms}</a>
+            <a href="#" className="footer-link">{t.footer.cookies}</a>
           </div>
         </div>
       </div>

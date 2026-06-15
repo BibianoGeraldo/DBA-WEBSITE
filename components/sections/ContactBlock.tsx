@@ -3,25 +3,12 @@ import { useState, useRef, useEffect } from 'react';
 import { Icon } from '@/components/ui/Icon';
 import { Arrow } from '@/components/ui/Arrow';
 import { SOCIAL_LINKS } from '@/lib/data';
+import { useTranslation } from '@/hooks/useTranslation';
 
 const PHONE_DISPLAY = '+258 85 222 2016';
 const PHONE_HREF = 'tel:+258852222016';
 const EMAIL = 'info@dba.co.mz';
 const MAP_URL = 'https://www.google.com/maps/search/?api=1&query=Rua%20dos%20Desportistas%20833%20JAT%205-1%209%20Andar%20Maputo%20Mocambique';
-
-const AREAS_DE_INTERESSE = [
-  'Fiscalidade',
-  'Contabilidade & Outsourcing',
-  'Auditoria & Assurance',
-  'Advisory Financeiro',
-  'Recursos Humanos',
-  'Tecnologia & Automação',
-  'ESG & Climate',
-  'Investment Support',
-  'PME-HUB',
-  'Recrutamento',
-  'Outro',
-];
 
 function SocialCircle({ children, ariaLabel, href = '#' }: { children: React.ReactNode; ariaLabel: string; href?: string }) {
   return (
@@ -79,10 +66,10 @@ function UnderlineField({ label, required, value, onChange, multiline, flex, typ
 function DropdownField({ label, required, value, onChange }: {
   label: string; required?: boolean; value: string; onChange: (v: string) => void;
 }) {
+  const t = useTranslation();
   const [open, setOpen] = useState(false);
   const [focused, setFocused] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
-  const active = focused || open || value.length > 0;
 
   useEffect(() => {
     const handler = (e: MouseEvent) => {
@@ -116,7 +103,7 @@ function DropdownField({ label, required, value, onChange }: {
           display: 'flex', alignItems: 'center', justifyContent: 'space-between',
           transition: 'border-color .18s',
         }}>
-        <span>{value || 'Seleccionar área'}</span>
+        <span>{value || t.contactBlock.formSelect}</span>
         <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2"
           strokeLinecap="round" strokeLinejoin="round"
           style={{ position: 'absolute', right: 2, top: '50%', transform: `translateY(-50%) rotate(${open ? 180 : 0}deg)`, transition: 'transform .2s', color: open ? 'var(--c-blue)' : 'var(--c-mute)', flexShrink: 0 }}>
@@ -132,11 +119,11 @@ function DropdownField({ label, required, value, onChange }: {
           border: '1px solid rgba(0,0,0,.07)', overflow: 'hidden',
           maxHeight: 280, overflowY: 'auto',
         }}>
-          {AREAS_DE_INTERESSE.map((area, i) => (
+          {t.contactBlock.areasDeInteresse.map((area, i) => (
             <button key={area} type="button" onClick={() => select(area)}
               style={{
                 width: '100%', background: area === value ? 'rgba(1,101,221,.06)' : 'transparent',
-                border: 0, borderBottom: i < AREAS_DE_INTERESSE.length - 1 ? '1px solid rgba(0,0,0,.05)' : 'none',
+                border: 0, borderBottom: i < t.contactBlock.areasDeInteresse.length - 1 ? '1px solid rgba(0,0,0,.05)' : 'none',
                 padding: '11px 16px', font: 'inherit', fontSize: 14.5,
                 color: area === value ? 'var(--c-blue)' : 'var(--c-ink)',
                 textAlign: 'left', cursor: 'pointer',
@@ -155,6 +142,7 @@ function DropdownField({ label, required, value, onChange }: {
 }
 
 function ContactForm() {
+  const t = useTranslation();
   const [state, setState] = useState({ name: '', email: '', phone: '', area: '', message: '' });
   const [sent, setSent] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -172,12 +160,12 @@ function ContactForm() {
         <div style={{ width: 56, height: 56, borderRadius: 16, background: 'rgba(17,191,116,.18)', color: '#11bf74', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', marginBottom: 18 }}>
           <Icon name="check" size={26} />
         </div>
-        <h3 style={{ marginBottom: 10, fontWeight: 500 }}>Mensagem enviada.</h3>
+        <h3 style={{ marginBottom: 10, fontWeight: 500 }}>{t.contactBlock.successTitle}</h3>
         <p style={{ color: 'var(--c-mute)', fontSize: 15.5, lineHeight: 1.55, maxWidth: 360, marginInline: 'auto' }}>
-          Obrigado, {state.name || 'colega'}. Um Partner responde-lhe pessoalmente em 24 horas úteis (Seg-Sex).
+          {t.contactBlock.successBody.replace('{name}', state.name || t.contactBlock.successFallback)}
         </p>
         <button className="btn btn--ghost" style={{ marginTop: 24 }} onClick={() => { setSent(false); setState({ name: '', email: '', phone: '', area: '', message: '' }); }}>
-          Enviar nova mensagem
+          {t.contactBlock.successBtn}
         </button>
       </div>
     );
@@ -186,51 +174,54 @@ function ContactForm() {
   return (
     <form onSubmit={submit} style={{ display: 'flex', flexDirection: 'column', gap: 30, flex: 1 }}>
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 28 }}>
-        <UnderlineField label="Nome Completo"       required value={state.name}  onChange={change('name')} />
-        <UnderlineField label="Email"               required type="email" value={state.email} onChange={change('email')} />
+        <UnderlineField label={t.contactBlock.formName}  required value={state.name}  onChange={change('name')} />
+        <UnderlineField label={t.contactBlock.formEmail} required type="email" value={state.email} onChange={change('email')} />
       </div>
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 28 }}>
-        <UnderlineField label="Telefone / WhatsApp" required type="tel" value={state.phone} onChange={change('phone')} />
-        <DropdownField  label="Área de interesse"   required value={state.area}  onChange={v => setState(s => ({ ...s, area: v }))} />
+        <UnderlineField label={t.contactBlock.formPhone} required type="tel" value={state.phone} onChange={change('phone')} />
+        <DropdownField  label={t.contactBlock.formArea}  required value={state.area}  onChange={v => setState(s => ({ ...s, area: v }))} />
       </div>
-      <UnderlineField label="Mensagem" required value={state.message} onChange={change('message')} multiline flex />
+      <UnderlineField label={t.contactBlock.formMessage} required value={state.message} onChange={change('message')} multiline flex />
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 16, flexWrap: 'wrap', marginTop: 4 }}>
         <button type="submit" disabled={loading} className="send-btn">
-          <span>{loading ? 'A enviar…' : 'Enviar'}</span>
+          <span>{loading ? t.contactBlock.formSending : t.contactBlock.formSend}</span>
           <span className="send-btn__circle">
             {loading
               ? <svg className="spin" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><circle cx="12" cy="12" r="9" strokeOpacity=".2"/><path d="M12 3a9 9 0 0 1 9 9"/></svg>
               : <Arrow size={14} />}
           </span>
         </button>
-        <em style={{ color: 'var(--c-mute)', fontSize: 13 }}>Respondemos em 24h úteis (Seg–Sex)</em>
+        <em style={{ color: 'var(--c-mute)', fontSize: 13 }}>{t.contactBlock.formNote}</em>
       </div>
     </form>
   );
 }
 
 export function ContactBlock() {
+  const t = useTranslation();
   return (
     <section className="contact-block">
       <div className="container">
         <div className="contact-block__inner">
           <div style={{ color: '#fff' }}>
             <h2 style={{ color: '#fff', fontSize: 'clamp(26px, 2.8vw, 40px)', fontWeight: 500, letterSpacing: '-0.025em', lineHeight: 1.1, marginBottom: 30 }}>
-              Fale connosco.<br/>Estamos aqui para ajudar.
+              {t.contactBlock.title.split('\n').map((line, i) => (
+                <span key={i}>{line}{i === 0 && <br/>}</span>
+              ))}
             </h2>
             <p style={{ fontSize: 13.5, color: 'rgba(255,255,255,.85)', lineHeight: 1.55, marginBottom: 20 }}>
-              <span style={{ color: '#fff' }}>*</span>Alguns serviços são prestados por empresas especializadas do Grupo. A dBA actua como ponto único de contacto.
+              <span style={{ color: '#fff' }}>*</span>{t.contactBlock.disclaimer.replace(/^\*/, '')}
             </p>
             <div style={{ height: 1, background: 'rgba(255,255,255,.25)', margin: '20px 0 28px' }} />
             <p style={{ fontSize: 16, color: 'rgba(255,255,255,.92)', lineHeight: 1.55, marginBottom: 44, maxWidth: 520 }}>
-              Quer pretenda marcar uma reunião, esclarecer uma dúvida ou discutir uma necessidade específica, a nossa equipa está disponível para o apoiar com proximidade, rigor e resposta rápida.
+              {t.contactBlock.intro}
             </p>
             <div className="contact-info-grid">
-              <ContactInfoBlock title="Contactos"   value={PHONE_DISPLAY} href={PHONE_HREF} />
-              <ContactInfoBlock title="Localização" value={<span>Rua dos Desportistas, n.º 833,<br/>JAT 5-1, 9.º Andar<br/>Maputo, Moçambique</span>} href={MAP_URL} external />
-              <ContactInfoBlock title="Email"       value={EMAIL} href={`mailto:${EMAIL}`} />
+              <ContactInfoBlock title={t.contactBlock.labelPhone}    value={PHONE_DISPLAY} href={PHONE_HREF} />
+              <ContactInfoBlock title={t.contactBlock.labelLocation} value={<span>Rua dos Desportistas, n.º 833,<br/>JAT 5-1, 9.º Andar<br/>Maputo, Moçambique</span>} href={MAP_URL} external />
+              <ContactInfoBlock title={t.contactBlock.labelEmail}    value={EMAIL} href={`mailto:${EMAIL}`} />
               <div>
-                <h4 style={{ color: '#fff', fontSize: 22, fontWeight: 500, marginBottom: 16 }}>Redes Sociais</h4>
+                <h4 style={{ color: '#fff', fontSize: 22, fontWeight: 500, marginBottom: 16 }}>{t.contactBlock.labelSocial}</h4>
                 <div style={{ display: 'flex', gap: 10 }}>
                   {SOCIAL_LINKS.map(s => (
                     <SocialCircle key={s.label} ariaLabel={s.label} href={s.href}>
