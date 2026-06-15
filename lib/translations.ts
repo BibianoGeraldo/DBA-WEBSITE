@@ -35,7 +35,7 @@ const PT = {
   },
   home: {
     heroTitle: 'Consultoria com liderança sénior formada em firmas Big Four.\nExcelência local, padrões internacionais.',
-    heroLede: 'Auditoria, Fiscalidade, Advisory, Capital Humano, Tecnologia, Outsourcing – Um parceiro para cada etapa do seu negócio — soluções integradas para cada etapa do crescimento da sua empresa.',
+    heroLede: 'Auditoria, Fiscalidade, Advisory, Capital Humano, Tecnologia, Outsourcing. Um parceiro para cada etapa do seu negócio, com soluções integradas para cada etapa do crescimento da sua empresa.',
     heroNote: 'Mais de 100 projectos entregues com sucesso em diferentes sectores da economia.',
     audienceLarge: 'Sou uma grande empresa',
     audienceLargeBody: 'Apoio especializado para multinacionais e grandes grupos com operações em Moçambique.',
@@ -50,15 +50,15 @@ const PT = {
     why40Label: 'Anos de experiência acumulada',
     why40Body: 'A nossa liderança reúne mais de 40 anos de experiência acumulada em firmas Big Four e redes internacionais de auditoria e consultoria.',
     whyMozLabel: 'Conhecimento Local',
-    whyMozBody: 'Conhecemos o contexto fiscal, legal, contabilístico e empresarial moçambicano — e traduzimos essa realidade em soluções práticas.',
+    whyMozBody: 'Conhecemos o contexto fiscal, legal, contabilístico e empresarial moçambicano, e traduzimos essa realidade em soluções práticas.',
     whySeniorLabel: 'Liderança Sénior',
     whySeniorBody: 'Os nossos Partners e Directores estão directamente envolvidos nos projectos, assegurando rigor técnico, proximidade e responsabilidade.',
     whyTrustLabel: 'Relações de Confiança',
     whyTrustBody: 'Construímos relações de longo prazo assentes em confiança, transparência e entrega consistente de valor.',
     teamTitle: 'Nossa equipa de liderança',
-    teamLede: 'Conheça os profissionais que lideram a dBA – uma equipa sénior com trajecto em firmas Big Four, redes internacionais de auditoria e consultoria, multinacionais e projectos estratégicos em Moçambique.',
+    teamLede: 'Conheça os profissionais que lideram a dBA, uma equipa sénior com trajecto em firmas Big Four, redes internacionais de auditoria e consultoria, multinacionais e projectos estratégicos em Moçambique.',
     industriesTitle: 'Indústrias',
-    industriesLede: 'Apoiamos empresas locais, multinacionais, investidores e instituições em sectores estratégicos da economia moçambicana — incluindo energia, serviços financeiros, telecomunicações, grande consumo, sector público, logística, agricultura, imobiliário e construção.',
+    industriesLede: 'Apoiamos empresas locais, multinacionais, investidores e instituições em sectores estratégicos da economia moçambicana, incluindo energia, serviços financeiros, telecomunicações, grande consumo, sector público, logística, agricultura, imobiliário e construção.',
     pillEnergy: 'Energia',
     pillTelco: 'Telecomunicações',
     pillFmcg: 'Grande Consumo',
@@ -95,7 +95,7 @@ const PT = {
   },
   investment: {
     heroTitle: 'Invista em Moçambique com clareza, conformidade e velocidade.',
-    heroLede: 'Acompanhamento liderado por Partners na entrada no mercado, estruturação de investimento, execução local e conformidade contínua — com a dBA como ponto único de contacto em Moçambique.',
+    heroLede: 'Acompanhamento liderado por Partners na entrada no mercado, estruturação de investimento, execução local e conformidade contínua, com a dBA como ponto único de contacto em Moçambique.',
     howTitle: 'Como apoiamos investidores',
     block1Title: 'Entrada no mercado',
     block1Body: 'Estruturação inicial, constituição de sociedade, licenciamento, enquadramento fiscal e apoio à implementação local.',
@@ -163,7 +163,7 @@ const PT = {
   },
   servicesCarousel: {
     title: 'Serviços',
-    lede: 'Apoiamos empresas, investidores e empreendedores em Moçambique com soluções integradas de fiscalidade, auditoria, contabilidade, advisory, capital humano, tecnologia e ESG — desde a estruturação inicial até à gestão, crescimento e conformidade contínua.',
+    lede: 'Apoiamos empresas, investidores e empreendedores em Moçambique com soluções integradas de fiscalidade, auditoria, contabilidade, advisory, capital humano, tecnologia e ESG, desde a estruturação inicial até à gestão, crescimento e conformidade contínua.',
   },
   // ─── Data arrays ────────────────────────────────────────────────────────────
   servicesData: [
@@ -297,7 +297,7 @@ const EN: typeof PT = {
   },
   home: {
     heroTitle: 'Consulting with senior leadership trained at Big Four firms.\nLocal excellence, international standards.',
-    heroLede: 'Audit, Tax, Advisory, Human Capital, Technology, Outsourcing – A partner for every stage of your business — integrated solutions for every stage of your company\'s growth.',
+    heroLede: 'Audit, Tax, Advisory, Human Capital, Technology, Outsourcing. A partner for every stage of your business, with integrated solutions for every stage of your company\'s growth.',
     heroNote: 'Over 100 projects successfully delivered across different sectors of the economy.',
     audienceLarge: 'I am a large company',
     audienceLargeBody: 'Specialist support for multinationals and large groups with operations in Mozambique.',
@@ -312,15 +312,15 @@ const EN: typeof PT = {
     why40Label: 'Years of accumulated experience',
     why40Body: 'Our leadership brings together over 40 years of accumulated experience at Big Four firms and international audit and consulting networks.',
     whyMozLabel: 'Local Knowledge',
-    whyMozBody: 'We know the Mozambican tax, legal, accounting and business context — and translate that reality into practical solutions.',
+    whyMozBody: 'We know the Mozambican tax, legal, accounting and business context, and translate that reality into practical solutions.',
     whySeniorLabel: 'Senior Leadership',
     whySeniorBody: 'Our Partners and Directors are directly involved in projects, ensuring technical rigour, proximity and accountability.',
     whyTrustLabel: 'Trust Relationships',
     whyTrustBody: 'We build long-term relationships based on trust, transparency and consistent delivery of value.',
     teamTitle: 'Our leadership team',
-    teamLede: 'Meet the professionals who lead dBA – a senior team with backgrounds at Big Four firms, international audit and consulting networks, multinationals and strategic projects in Mozambique.',
+    teamLede: 'Meet the professionals who lead dBA, a senior team with backgrounds at Big Four firms, international audit and consulting networks, multinationals and strategic projects in Mozambique.',
     industriesTitle: 'Industries',
-    industriesLede: 'We support local companies, multinationals, investors and institutions across strategic sectors of the Mozambican economy — including energy, financial services, telecommunications, FMCG, public sector, logistics, agriculture, real estate and construction.',
+    industriesLede: 'We support local companies, multinationals, investors and institutions across strategic sectors of the Mozambican economy, including energy, financial services, telecommunications, FMCG, public sector, logistics, agriculture, real estate and construction.',
     pillEnergy: 'Energy',
     pillTelco: 'Telecommunications',
     pillFmcg: 'FMCG',
@@ -357,7 +357,7 @@ const EN: typeof PT = {
   },
   investment: {
     heroTitle: 'Invest in Mozambique with clarity, compliance and speed.',
-    heroLede: 'Partner-led support for market entry, investment structuring, local execution and ongoing compliance — with dBA as your single point of contact in Mozambique.',
+    heroLede: 'Partner-led support for market entry, investment structuring, local execution and ongoing compliance, with dBA as your single point of contact in Mozambique.',
     howTitle: 'How we support investors',
     block1Title: 'Market Entry',
     block1Body: 'Initial structuring, company incorporation, licensing, tax framework and support for local implementation.',
@@ -425,7 +425,7 @@ const EN: typeof PT = {
   },
   servicesCarousel: {
     title: 'Services',
-    lede: 'We support companies, investors and entrepreneurs in Mozambique with integrated solutions in tax, audit, accounting, advisory, human capital, technology and ESG — from initial structuring to management, growth and ongoing compliance.',
+    lede: 'We support companies, investors and entrepreneurs in Mozambique with integrated solutions in tax, audit, accounting, advisory, human capital, technology and ESG, from initial structuring to management, growth and ongoing compliance.',
   },
   // ─── Data arrays ─────────────────────────────────────────────────────────
   servicesData: [
