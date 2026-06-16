@@ -18,14 +18,15 @@ export function Header() {
   const { lang, setLang } = useLanguage();
   const t = useTranslation();
 
+  const lc = lang.toLowerCase();
   const NAV_LINKS = [
-    { href: '/',           label: t.nav.home },
-    { href: '/about',      label: t.nav.about },
-    { href: '/industries', label: t.nav.industries },
-    { href: '/services',   label: t.nav.services },
-    { href: '/investment', label: t.nav.investment },
-    { href: '/esg',        label: t.nav.esg },
-    { href: '/contact',    label: t.nav.contact },
+    { href: `/${lc}`,             label: t.nav.home },
+    { href: `/${lc}/about`,       label: t.nav.about },
+    { href: `/${lc}/industries`,  label: t.nav.industries },
+    { href: `/${lc}/services`,    label: t.nav.services },
+    { href: `/${lc}/investment`,  label: t.nav.investment },
+    { href: `/${lc}/esg`,         label: t.nav.esg },
+    { href: `/${lc}/contact`,     label: t.nav.contact },
   ];
 
   useEffect(() => { setMounted(true); }, []);
@@ -38,7 +39,7 @@ export function Header() {
   useEffect(() => { setOpen(false); }, [pathname]);
 
   const isActive = (href: string) => {
-    if (href === '/') return pathname === '/';
+    if (href === `/${lc}`) return pathname === `/${lc}`;
     return pathname.startsWith(href);
   };
 
@@ -47,7 +48,7 @@ export function Header() {
       <div className={`header-wrap ${scrolled ? 'is-scrolled' : ''}`}>
         <header className={`header ${scrolled ? 'is-scrolled' : ''}`}>
           <div className="container header__row">
-            <Link href="/" className="header__brand" aria-label="dBA, página inicial" onClick={() => setOpen(false)}>
+            <Link href={`/${lc}`} className="header__brand" aria-label="dBA, página inicial" onClick={() => setOpen(false)}>
               <Logo size={40} withWordmark={false} />
             </Link>
 
