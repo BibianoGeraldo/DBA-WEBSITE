@@ -235,8 +235,9 @@ export const TEAM: TeamMember[] = [
   {
     name: 'Victor Matavel',
     role: 'ESG & Climate Advisory',
-    photo: '',
+    photo: '/Team/victor-matavel.png',
     bio: 'Economista com 12 anos de experiência profissional, incluindo funções em organizações multinacionais como GE e Baker Hughes. Actua em projectos de energia, bioenergia, clean cooking, ESG, desenvolvimento de mercado e investimento climático. Tem trabalhado com governos, DFIs, doadores e sector privado em iniciativas de impacto e transição energética.',
+    linkedin: 'https://www.linkedin.com/in/victor-matavel-5b44012a/',
   },
   {
     name: 'Fernando Muacha',

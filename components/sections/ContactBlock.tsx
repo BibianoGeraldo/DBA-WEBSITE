@@ -144,14 +144,29 @@ function DropdownField({ label, required, value, onChange }: {
 function ContactForm() {
   const t = useTranslation();
   const [state, setState] = useState({ name: '', email: '', phone: '', area: '', message: '' });
+  const [company, setCompany] = useState(''); // honeypot — stays empty for humans
   const [sent, setSent] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
   const change = (k: keyof typeof state) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => setState(s => ({ ...s, [k]: e.target.value }));
-  const submit = (e: React.FormEvent) => {
+  const submit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!state.area) return;
     setLoading(true);
-    setTimeout(() => { setLoading(false); setSent(true); }, 900);
+    setError(false);
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...state, company }),
+      });
+      if (!res.ok) throw new Error('request failed');
+      setSent(true);
+    } catch {
+      setError(true);
+    } finally {
+      setLoading(false);
+    }
   };
 
   if (sent) {
@@ -164,7 +179,7 @@ function ContactForm() {
         <p style={{ color: 'var(--c-mute)', fontSize: 15.5, lineHeight: 1.55, maxWidth: 360, marginInline: 'auto' }}>
           {t.contactBlock.successBody.replace('{name}', state.name || t.contactBlock.successFallback)}
         </p>
-        <button className="btn btn--ghost" style={{ marginTop: 24 }} onClick={() => { setSent(false); setState({ name: '', email: '', phone: '', area: '', message: '' }); }}>
+        <button className="btn btn--ghost" style={{ marginTop: 24 }} onClick={() => { setSent(false); setError(false); setState({ name: '', email: '', phone: '', area: '', message: '' }); }}>
           {t.contactBlock.successBtn}
         </button>
       </div>
@@ -173,6 +188,13 @@ function ContactForm() {
 
   return (
     <form onSubmit={submit} style={{ display: 'flex', flexDirection: 'column', gap: 30, flex: 1 }}>
+      {/* Honeypot: hidden from humans, tempting to bots. Submissions with it filled are discarded server-side. */}
+      <div aria-hidden="true" style={{ position: 'absolute', left: '-9999px', width: 1, height: 1, overflow: 'hidden' }}>
+        <label>
+          Company
+          <input type="text" tabIndex={-1} autoComplete="off" value={company} onChange={e => setCompany(e.target.value)} />
+        </label>
+      </div>
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 28 }}>
         <UnderlineField label={t.contactBlock.formName}  required value={state.name}  onChange={change('name')} />
         <UnderlineField label={t.contactBlock.formEmail} required type="email" value={state.email} onChange={change('email')} />
@@ -193,6 +215,11 @@ function ContactForm() {
         </button>
         <em style={{ color: 'var(--c-mute)', fontSize: 13 }}>{t.contactBlock.formNote}</em>
       </div>
+      {error && (
+        <p role="alert" style={{ color: '#d23b3b', fontSize: 14, lineHeight: 1.5, margin: 0 }}>
+          {t.contactBlock.formError}
+        </p>
+      )}
     </form>
   );
 }

@@ -1,7 +1,8 @@
 'use client';
 import { ContactStrip } from '@/components/sections/ContactStrip';
 
-export type LegalSection = { h: string; body: string[] };
+export type LegalBlock = string | { list: string[] };
+export type LegalSection = { h: string; body: LegalBlock[] };
 export type LegalContent = {
   title: string;
   updatedLabel: string;
@@ -9,6 +10,9 @@ export type LegalContent = {
   intro: string;
   sections: LegalSection[];
 };
+
+const pStyle: React.CSSProperties = { fontSize: 15.5, color: '#444', lineHeight: 1.75, margin: '0 0 12px' };
+const liStyle: React.CSSProperties = { fontSize: 15.5, color: '#444', lineHeight: 1.75, marginBottom: 6 };
 
 export function LegalDoc({ content }: { content: LegalContent }) {
   return (
@@ -26,9 +30,13 @@ export function LegalDoc({ content }: { content: LegalContent }) {
           {content.sections.map((s) => (
             <section key={s.h} style={{ marginTop: 36 }}>
               <h2 style={{ fontSize: 20, fontWeight: 600, letterSpacing: '-0.01em', margin: '0 0 12px' }}>{s.h}</h2>
-              {s.body.map((p, i) => (
-                <p key={i} style={{ fontSize: 15.5, color: '#444', lineHeight: 1.75, margin: '0 0 12px' }}>{p}</p>
-              ))}
+              {s.body.map((block, i) =>
+                typeof block === 'string'
+                  ? <p key={i} style={pStyle}>{block}</p>
+                  : <ul key={i} style={{ paddingLeft: 24, margin: '0 0 12px' }}>
+                      {block.list.map((item, j) => <li key={j} style={liStyle}>{item}</li>)}
+                    </ul>
+              )}
             </section>
           ))}
         </div>
